@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour {
     private float speed;
   
 
-    private List<GameObject> towers;
+    private List<TowerBase> towers;
     private Vector2 closestTower;
     private Vector2 currentPosition;
 	// Use this for initialization
@@ -17,20 +17,21 @@ public class Enemy : MonoBehaviour {
         rigidBody = this.GetComponent<Rigidbody2D>();
         speed = 2.5f;
 
-        
 
-        towers = new List<GameObject>();
 
-        Transform rootTowers = GameObject.Find("Towers").transform;
 
-        foreach (Transform tower in rootTowers)
-        {
-            towers.Add(tower.gameObject);
-        }
+	    GetTowers();
+
         Debug.Log(towers.Count);
 
-        
+    }
 
+    void GetTowers() {
+        GameObject[] towersTEMP = GameObject.FindGameObjectsWithTag("Tower");
+        towers = new List<TowerBase>();
+        for (int i = 0; i < towersTEMP.Length; i++) {
+            towers.Add(towersTEMP[i].GetComponent<TowerBase>());
+        }
     }
 	
 	// Update is called once per frame
@@ -46,8 +47,9 @@ public class Enemy : MonoBehaviour {
         float minDist = Mathf.Infinity;
         Vector2 tMin = new Vector2();
 
-        foreach (GameObject tower in towers)
-        {
+        foreach (TowerBase tower in towers) {
+            if (!tower.Active()) continue;
+
             float dist = Vector3.Distance(currentPos, tower.transform.position );
             if(dist < minDist)
             {

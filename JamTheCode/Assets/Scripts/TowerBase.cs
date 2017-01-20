@@ -6,9 +6,13 @@ public class TowerBase : MonoBehaviour {
 	public TowerBase parent;
 	public Tower[] children;
 
-	// Use this for initialization
-	void Start () {
-		children = new Tower[4];
+
+    [SerializeField]
+    protected bool isActive = true;
+
+    // Use this for initialization
+    void Start () {
+		//children = new Tower[4];
 	}
 	
 	// Update is called once per frame
@@ -27,7 +31,7 @@ public class TowerBase : MonoBehaviour {
 		children[children.Length] = child;
 	}
 
-	public void GetChildByKey(string input) {
+	public Tower GetChildByKey(string input) {
 		for (int i = 0; i < children.Length; i++) {
 			Tower tempChild = children[i];
 			if (tempChild.GetActivationKey() == input) {
@@ -37,4 +41,19 @@ public class TowerBase : MonoBehaviour {
 
 		return null;
 	}
+    
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Enemy")) {
+            Die();
+        }
+    }
+
+    private void Die() {
+        isActive = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public bool Active() {
+        return isActive;
+    }
 }

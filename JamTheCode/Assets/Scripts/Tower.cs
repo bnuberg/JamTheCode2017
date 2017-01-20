@@ -12,10 +12,12 @@ public class Tower : TowerBase {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
-	public string GetKey() {
+	public string GetActivationKey() {
 		return activationKey;
 	}
+
+    
 }
