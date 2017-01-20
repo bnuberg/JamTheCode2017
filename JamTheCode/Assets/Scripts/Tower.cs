@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Tower : TowerBase {
     [SerializeField]
 	private ActivateKeys activationKey;
+    [SerializeField]
+    private Text inputText;
 
     public enum ActivateKeys {
         X=0,
@@ -21,6 +23,8 @@ public class Tower : TowerBase {
         } else {
             GetComponent<SpriteRenderer>().color = Color.red;
         }
+        
+        inputText.text = InputToText(GetActivationKey());
     }
 	
 	// Update is called once per frame
@@ -28,6 +32,30 @@ public class Tower : TowerBase {
         
 	}
 
+    private string InputToText(ActivateKeys key)
+    {
+        string inputText = "";
+
+        switch (key)
+        {
+            case ActivateKeys.X:
+                inputText = "A";
+                break;
+            case ActivateKeys.Circle:
+                inputText = "B";
+                break;
+            case ActivateKeys.Square:
+                inputText = "X";
+                break;
+            case ActivateKeys.Triangle:
+                inputText = "Y";
+                break;
+            default:
+                break;
+        }
+
+        return inputText;
+    }
     void OnMouseDown() {
         SetActive();
         
