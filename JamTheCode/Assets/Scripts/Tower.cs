@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : TowerBase {
-	private string activationKey;
+    [SerializeField]
+	private ActivateKeys activationKey;
+
+    public enum ActivateKeys {
+        X=0,
+        Circle=1,
+        Square=2,
+        Triangle=3
+    }
 
 	// Use this for initialization
 	void Start () {
-		activationKey = "";
 
         if (isActive) {
             GetComponent<SpriteRenderer>().color = Color.green;
@@ -38,14 +45,9 @@ public class Tower : TowerBase {
         }
     }
 
-    public void SetActive() {
-        if (parentTower.Active()) {
-            isActive = true;
-            GetComponent<SpriteRenderer>().color = Color.green;
-        }
-    }
 
-	public string GetActivationKey() {
+
+	public ActivateKeys GetActivationKey() {
 		return activationKey;
 	}
 

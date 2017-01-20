@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TowerBase : MonoBehaviour {
     [SerializeField]
-    protected TowerBase parentTower;
+    public TowerBase parentTower;
     [SerializeField]
-    protected Tower[] children;
+    public Tower[] children;
 
 
     [SerializeField]
@@ -34,7 +34,7 @@ public class TowerBase : MonoBehaviour {
 		children[children.Length] = child;
 	}
 
-	public Tower GetChildByKey(string input) {
+	public Tower GetChildByKey(Tower.ActivateKeys input) {
 		for (int i = 0; i < children.Length; i++) {
 			Tower tempChild = children[i];
 			if (tempChild.GetActivationKey() == input) {
@@ -59,5 +59,12 @@ public class TowerBase : MonoBehaviour {
 
     public bool Active() {
         return isActive;
+    }
+
+    public void SetActive() {
+        if (parentTower.Active()) {
+            isActive = true;
+            GetComponent<SpriteRenderer>().color = Color.green;
+        }
     }
 }
