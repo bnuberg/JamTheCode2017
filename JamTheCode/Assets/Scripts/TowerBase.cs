@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerBase : MonoBehaviour {
-	public TowerBase parent;
-	public Tower[] children;
+    [SerializeField]
+    protected TowerBase parentTower;
+    [SerializeField]
+    protected Tower[] children;
 
 
     [SerializeField]
@@ -13,7 +15,8 @@ public class TowerBase : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		//children = new Tower[4];
-	}
+        //GetComponent<SpriteRenderer>().color = Color.green;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,7 +24,7 @@ public class TowerBase : MonoBehaviour {
 	}
 
 	public void SetParent(TowerBase tower) {
-		parent = tower;
+		parentTower = tower;
 	}
 
 	public void AddChild(Tower child) {
@@ -48,9 +51,10 @@ public class TowerBase : MonoBehaviour {
         }
     }
 
-    private void Die() {
+    virtual public void Die() {
         isActive = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().color = Color.red;
+        //GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public bool Active() {

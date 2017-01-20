@@ -61,8 +61,4 @@ public class Enemy : MonoBehaviour {
         return tMin;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        
-    }
 }
