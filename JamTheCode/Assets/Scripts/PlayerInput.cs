@@ -6,9 +6,14 @@ public class PlayerInput : MonoBehaviour {
     [SerializeField] private TowerBase towerBase;
 
     private TowerBase currentTower;
+    private TowerBase tower = null;
 
-	// Use this for initialization
-	void Start () {
+    bool isButtonDown = false;
+    private float timer;
+    private float activationTime = 1f;
+
+    // Use this for initialization
+    void Start () {
 	    currentTower = towerBase;
 	}
 	
@@ -19,41 +24,84 @@ public class PlayerInput : MonoBehaviour {
     }
 
     private void InputHandler() {
-        TowerBase tower;
-
-        if (!currentTower.Active()) {
-            currentTower = towerBase;
-        }
-
-        if (Input.GetButtonDown("X")) {
-            tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
-            tower.SetActive();
-            currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-            currentTower = tower;
+        if (Input.GetButtonDown("X"))
+        {
             Debug.Log("0");
+            tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
+            if (tower.Active())
+            {
+                explosion(tower);
+            }
+            else
+            {
+                isButtonDown = true;
+            }
         } else if (Input.GetButtonDown("Circle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Circle);
-            tower.SetActive();
-            currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-            currentTower = tower;
+            if (tower.Active())
+            {
+                explosion(tower);
+            }
+            else
+            {
+                isButtonDown = true;
+            }
             Debug.Log("1");
         } else if (Input.GetButtonDown("Square")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Square);
-            tower.SetActive();
-            currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-            currentTower = tower;
+            if (tower.Active())
+            {
+                explosion(tower);
+            }
+            else
+            {
+                isButtonDown = true;
+            }
             Debug.Log("2");
         } else if (Input.GetButtonDown("Triangle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Triangle);
-            currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-            tower.SetActive();
-            currentTower = tower;
+            if (tower.Active())
+            {
+                explosion(tower);
+            }
+            else
+            {
+                isButtonDown = true;
+            }
+        }
+
+        if (Input.GetButtonUp("X") || Input.GetButtonUp("Circle") || Input.GetButtonUp("Square") || Input.GetButtonUp("Triangle"))
+        {
+            isButtonDown = false;
+            tower = null;
+            timer = 0;
+        }
+
+        if (isButtonDown)
+        {
+            timer += Time.deltaTime;
+            Debug.Log("Timer: " + timer);
+        }
+
+        if (timer > activationTime)
+        {
+            Debug.Log(tower);
+            if (tower != null)
+            {
+                tower.SetActive();
+                currentTower = tower;
+            }
+            timer = 0;
         }
 
         if (currentTower.children.Length == 0) {
-            //TODO Add build section here
-            currentTower.GetComponent<SpriteRenderer>().color = Color.green;
             currentTower = towerBase;
         }
+    }
+
+    void explosion(TowerBase tower)
+    {
+        tower.SetActive();
+        currentTower = tower;
     }
 }
