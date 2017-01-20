@@ -15,7 +15,6 @@ public class Tower : TowerBase {
 
 	// Use this for initialization
 	void Start () {
-
         if (isActive) {
             GetComponent<SpriteRenderer>().color = Color.green;
         } else {
@@ -44,8 +43,6 @@ public class Tower : TowerBase {
             if (children[i].Active()) children[i].Die();
         }
     }
-
-
 
 	public ActivateKeys GetActivationKey() {
 		return activationKey;

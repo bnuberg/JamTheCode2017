@@ -33,6 +33,12 @@ public class Enemy : MonoBehaviour {
             towers.Add(towersTEMP[i].GetComponent<TowerBase>());
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Explosion")) {
+            Destroy(this.gameObject);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
