@@ -1,0 +1,66 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy : MonoBehaviour {
+
+    
+    private Rigidbody2D rigidBody;
+    private float speed;
+  
+
+    private List<GameObject> towers;
+    private Vector2 closestTower;
+    private Vector2 currentPosition;
+	// Use this for initialization
+	void Start () {
+        rigidBody = this.GetComponent<Rigidbody2D>();
+        speed = 2.5f;
+
+        
+
+        towers = new List<GameObject>();
+
+        Transform rootTowers = GameObject.Find("Towers").transform;
+
+        foreach (Transform tower in rootTowers)
+        {
+            towers.Add(tower.gameObject);
+        }
+        Debug.Log(towers.Count);
+
+        
+
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        currentPosition = this.transform.position;
+        closestTower = GetClosestTower(currentPosition);
+
+        transform.position = Vector2.MoveTowards(currentPosition, closestTower, Time.deltaTime*speed);
+    }
+
+    private Vector2 GetClosestTower(Vector2 currentPos)
+    {
+        float minDist = Mathf.Infinity;
+        Vector2 tMin = new Vector2();
+
+        foreach (GameObject tower in towers)
+        {
+            float dist = Vector3.Distance(currentPos, tower.transform.position );
+            if(dist < minDist)
+            {
+                tMin = tower.transform.position;
+                minDist = dist;
+            }
+        }
+        Debug.Log(tMin);
+        return tMin;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        
+    }
+}
