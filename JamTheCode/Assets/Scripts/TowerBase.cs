@@ -26,4 +26,15 @@ public class TowerBase : MonoBehaviour {
 		}
 		children[children.Length] = child;
 	}
+
+	public void GetChildByKey(string input) {
+		for (int i = 0; i < children.Length; i++) {
+			Tower tempChild = children[i];
+			if (tempChild.GetActivationKey() == input) {
+				return tempChild;
+			}
+		}
+
+		return null;
+	}
 }
