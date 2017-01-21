@@ -13,6 +13,7 @@ public class EnemyManager : MonoBehaviour
     
     public float spawnDistance;
 
+<<<<<<< HEAD
     private int waveCount;
     private int waveEnemyAmount;
     [SerializeField]
@@ -20,7 +21,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private Text waveCountMessage;
 
+    private List<Vector2> spawnPositions;
+=======
     private List<Vector3> spawnPositions;
+>>>>>>> TowerModelBranch
 
     // Use this for initialization
     void Start()
@@ -28,9 +32,14 @@ public class EnemyManager : MonoBehaviour
         mainTower = GameObject.Find("MainTower");
 
         interval = 2f;
-        spawnPositions = new List<Vector3>();
+<<<<<<< HEAD
+        spawnPositions = new List<Vector2>();
         waveCount = 0;
         waveEnemyAmount = 15;
+=======
+        spawnPositions = new List<Vector3>();
+        spawnDistance = 10f;
+>>>>>>> TowerModelBranch
         StartCoroutine(EnemySpawner());
     }
 
@@ -49,6 +58,7 @@ public class EnemyManager : MonoBehaviour
         UpdateWaveMiddle();
         while (true)
         {
+<<<<<<< HEAD
             
             yield return new WaitForSeconds(1.5f);
             waveCountMessage.text = "";
@@ -63,8 +73,12 @@ public class EnemyManager : MonoBehaviour
             UpdateWaveCount();
             UpdateWaveMiddle();
 
+=======
+            yield return new WaitForSeconds(interval);
+
             Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
             Instantiate(enemy, randomPosition, Quaternion.identity);
+>>>>>>> TowerModelBranch
         }
 
     }

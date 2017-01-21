@@ -28,9 +28,14 @@ public class TowerBase : MonoBehaviour {
     }
 
     // Use this for initialization
-    protected virtual void Start () {
+<<<<<<< HEAD
+    void Start () {
         GetComponent<SpriteRenderer>().color = Color.green;
         mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
+=======
+    protected virtual void Start () {
+        //children = new Tower[4];
+        //GetComponent<SpriteRenderer>().color = Color.green;
 
         animations = gameObject.GetComponentInChildren<Animation>();
         //ashes =
@@ -38,6 +43,7 @@ public class TowerBase : MonoBehaviour {
         //animations = GameObject.Find("TowerV1").GetComponent<Animation>();
 
         if (!isActive) animations.Play("Destroyed");
+>>>>>>> TowerModelBranch
     }
 	
 	// Update is called once per frame
@@ -139,7 +145,12 @@ public class TowerBase : MonoBehaviour {
         {
             GetComponent<SpriteRenderer>().enabled = true;
             isActive = true;
+<<<<<<< HEAD
+            //GetComponent<SpriteRenderer>().color = Color.green;
+=======
             animations.Play("Repair");
+            GetComponent<SpriteRenderer>().color = Color.cyan;
+>>>>>>> TowerModelBranch
         }
 
     }

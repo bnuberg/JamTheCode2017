@@ -10,15 +10,12 @@ public class Enemy : MonoBehaviour {
   
 
     private List<TowerBase> towers;
-    private Vector2 closestTower;
-    private Vector2 currentPosition;
+    private Vector3 closestTower;
+    private Vector3 currentPosition;
 	// Use this for initialization
 	void Start () {
         rigidBody = this.GetComponent<Rigidbody2D>();
         speed = 0.5f;
-
-
-
 
 	    GetTowers();
 
@@ -34,7 +31,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Explosion")) {
             Destroy(this.gameObject);
         }
@@ -45,13 +42,12 @@ public class Enemy : MonoBehaviour {
         currentPosition = this.transform.position;
         closestTower = GetClosestTower(currentPosition);
 
-        transform.position = Vector2.MoveTowards(currentPosition, closestTower, Time.deltaTime*speed);
+        transform.position = Vector3.MoveTowards(currentPosition, closestTower, Time.deltaTime*speed);
     }
 
-    private Vector2 GetClosestTower(Vector2 currentPos)
-    {
+    private Vector2 GetClosestTower(Vector3 currentPos) {
         float minDist = Mathf.Infinity;
-        Vector2 tMin = new Vector2();
+        Vector3 tMin = new Vector3();
 
         foreach (TowerBase tower in towers) {
             if (!tower.Active()) continue;

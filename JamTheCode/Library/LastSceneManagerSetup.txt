@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/DynamicTexts.unity
+- path: Assets/Scenes/3DScene.unity
   isLoaded: 1
   isActive: 1

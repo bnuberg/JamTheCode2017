@@ -8,8 +8,11 @@ public class Tower : TowerBase {
     [SerializeField]
     public Text inputText;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+
+    protected override void Start() {
+	    base.Start();
+
         if (isActive) {
             GetComponent<SpriteRenderer>().color = Color.green;
         } else {
