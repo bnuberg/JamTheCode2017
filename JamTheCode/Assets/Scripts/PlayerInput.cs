@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour {
 
     public TowerBase currentTower;
     private TowerBase tower = null;
+    private TowerBase mainTower;
 
     bool isButtonDown = false;
     private float timer;
@@ -15,8 +16,10 @@ public class PlayerInput : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	    currentTower = towerBase;
-	}
+        ChangeCurrenTower(towerBase);
+        mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
+        mainTower.TextActivator(mainTower.children);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -26,7 +29,7 @@ public class PlayerInput : MonoBehaviour {
 
     private void InputHandler() {
         if (!currentTower.Active()) {
-            currentTower = towerBase;
+            ChangeCurrenTower(towerBase);
         }
 
         bool hasActiveChild = false;
@@ -40,70 +43,59 @@ public class PlayerInput : MonoBehaviour {
         }
         if (!hasActiveChild)
         {
-            currentTower = towerBase;
+            ChangeCurrenTower(towerBase);
         }
 
         if (Input.GetButtonDown("X"))
         {
-            Debug.Log("0");
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
-            if (tower != null) {
-                if (tower.Active()) {
-                    Explosion(tower);
-                }
-            } else {
-                //TODO Enter combo breaker
-                //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-                //currentTower = towerBase;
-            }
+            HandlePlayerInput(tower);
         } else if (Input.GetButtonDown("Circle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Circle);
-            if (tower != null) {
-                if (tower.Active()) {
-                    Explosion(tower);
-                }
-            } else {
-                //TODO Enter combo breaker
-                //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-                //currentTower = towerBase;
-            }
-            Debug.Log("1");
+            HandlePlayerInput(tower);
         } else if (Input.GetButtonDown("Square")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Square);
-            if (tower != null) {
-                if (tower.Active()) {
-                    Explosion(tower);
-                }
-            } else {
-                //TODO Enter combo breaker
-                //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-                //currentTower = towerBase;
-            }
-            Debug.Log("2");
+            HandlePlayerInput(tower);
         } else if (Input.GetButtonDown("Triangle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Triangle);
-            if (tower != null) {
-                if (tower.Active()) {
-                    Explosion(tower);
-                }
-            } else {
-                //TODO Enter combo breaker
-                //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-                //currentTower = towerBase;
-            }
-            
+            HandlePlayerInput(tower);
         }
         
         if (currentTower.children.Length == 0) {
-            currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-            currentTower = towerBase;
+            //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+            ChangeCurrenTower(towerBase);
+            currentTower.TextActivator(currentTower.children);
         }
     }
 
+    void HandlePlayerInput(TowerBase tower)
+    {
+        if (tower != null)
+        {
+            mainTower.ResetTextTowers();
+            tower.TextActivator(tower.children);
+            if (tower.Active())
+            {
+                Explosion(tower);
+            }
+        }
+        else
+        {
+            //TODO Enter combo breaker
+            //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+            //currentTower = towerBase;
+        }
+    }
+
+    void ChangeCurrenTower(TowerBase tower)
+    {
+        currentTower = tower;
+        currentTower.TextActivator(currentTower.children);
+    }
     void Explosion(TowerBase tower)
     {
         tower.SetActive();
-        currentTower.GetComponent<SpriteRenderer>().color = Color.green;
-        currentTower = tower;
+        //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+        ChangeCurrenTower(tower);
     }
 }
