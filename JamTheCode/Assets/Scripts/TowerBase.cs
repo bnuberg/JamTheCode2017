@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
 public class TowerBase : MonoBehaviour {
     [SerializeField]
     public TowerBase parentTower;
@@ -33,8 +36,10 @@ public class TowerBase : MonoBehaviour {
 
     // Use this for initialization
     protected virtual void Start () {
-        GetComponent<SpriteRenderer>().color = Color.green;
+        //GetComponent<SpriteRenderer>().color = Color.green;
         mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
+        
+        RandomizeActivationKeys();
 
         animations = gameObject.GetComponentInChildren<Animation>();
         ashes = animations.gameObject.transform.GetChild(1).gameObject;
@@ -46,9 +51,26 @@ public class TowerBase : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
 
+    }
+
+    protected virtual void RandomizeActivationKeys()
+    {
+        int[] activationKeys = new int[4] { 0, 1, 2, 3 };
+        for (int i = 0; i < activationKeys.Length; i++)
+        {
+            int temp = activationKeys[i];
+            int randomIndex = Random.Range(i, activationKeys.Length);
+            activationKeys[i] = activationKeys[randomIndex];
+            activationKeys[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < children.Length; i++)
+        {
+            children[i].SetActivationKey((ActivateKeys)activationKeys[i]);
+        }
+        
+    }
 
     public void Shoot(GameObject enemy)
     {
@@ -58,7 +80,6 @@ public class TowerBase : MonoBehaviour {
     }
     public void TextActivator(Tower[] children)
     {
-        Debug.Log("Tower Text Activator");
         foreach (Tower child in children)
         {
             if (child.isActive)
@@ -71,7 +92,6 @@ public class TowerBase : MonoBehaviour {
 
     virtual public void ResetTextTowers()
     {
-        Debug.Log("Tower Text Reset");
         foreach (Tower tower in children)
         {
             tower.GetComponentInChildren<Text>().text = "";
@@ -106,7 +126,7 @@ public class TowerBase : MonoBehaviour {
         }
     }
     
-    public void OnActivation() {
+    public void Explosion() {
         GameObject go = Instantiate(explosion, transform);
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
@@ -146,7 +166,6 @@ public class TowerBase : MonoBehaviour {
     }
 
     public void SetActive() {
-        OnActivation();
         if (parentTower.Active())
         {
             GetComponent<SpriteRenderer>().enabled = true;
