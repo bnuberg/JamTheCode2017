@@ -15,6 +15,7 @@ public class Tower : TowerBase {
 
         InputToColor(GetActivationKey());
         inputText.text = "";
+        
     }
 	
 	// Update is called once per frame

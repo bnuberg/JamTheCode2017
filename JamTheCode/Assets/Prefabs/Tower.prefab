@@ -670,7 +670,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1495162916811536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.68, y: 0.04, z: 0}
+  m_LocalPosition: {x: -4.07, y: -0.17, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4135197409347702}
@@ -1787,14 +1787,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
-  children:
-  - {fileID: 0}
-  - {fileID: 0}
+  children: []
   explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
   animations: {fileID: 0}
   isActive: 1
-  fireSpawn: {fileID: 4206421415295506}
+  fireSpawn: {fileID: 1502809133959618}
   magicBall: {fileID: 1323273494179182, guid: f027449978407c849be51babbd00211e, type: 2}
+  connector: {fileID: 1479019689216520, guid: 51a97d6a43b4ad84995cad3c82507c19, type: 2}
+  buildConnections: 1
   activationKey: 1
   inputText: {fileID: 114569213952335774}
 --- !u!114 &114508518756545588
