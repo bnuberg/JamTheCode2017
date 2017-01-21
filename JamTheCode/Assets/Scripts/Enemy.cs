@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour {
         closestTower = GetClosestTower(currentPosition);
 
         transform.position = Vector3.MoveTowards(currentPosition, closestTower, Time.deltaTime*speed);
+        transform.LookAt(closestTower);
     }
 
     private Vector3 GetClosestTower(Vector3 currentPos) {
