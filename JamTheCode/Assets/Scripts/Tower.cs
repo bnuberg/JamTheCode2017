@@ -20,8 +20,13 @@ public class Tower : TowerBase {
 	
 	// Update is called once per frame
 	void Update () {
-        
-	}
+        if (explosionRange < maxExplosionRange)
+        {
+            Debug.Log("Increase Range");
+            explosionRange += 0.01f;
+        }
+        if (explosionRange > maxExplosionRange) explosionRange = maxExplosionRange;
+    }
 
     private void InputToColor(ActivateKeys key)
     {

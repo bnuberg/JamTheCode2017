@@ -27,10 +27,10 @@ public class EnemyManager : MonoBehaviour
     {
         mainTower = GameObject.Find("MainTower");
 
-        interval = 0.000001f;
+        interval = 1f;
         spawnPositions = new List<Vector3>();
         waveCount = 0;
-        waveEnemyAmount = 10000;
+        waveEnemyAmount = 30;
         StartCoroutine(EnemySpawner());
     }
 
