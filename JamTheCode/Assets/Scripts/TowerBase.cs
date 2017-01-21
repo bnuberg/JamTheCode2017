@@ -15,10 +15,17 @@ public class TowerBase : MonoBehaviour {
     [SerializeField]
     protected bool isActive = true;
 
+    public enum ActivateKeys
+    {
+        X = 0,
+        Circle = 1,
+        Square = 2,
+        Triangle = 3
+    }
+
     // Use this for initialization
     void Start () {
-		//children = new Tower[4];
-        //GetComponent<SpriteRenderer>().color = Color.green;
+        GetComponent<SpriteRenderer>().color = Color.green;
     }
 	
 	// Update is called once per frame
@@ -62,7 +69,20 @@ public class TowerBase : MonoBehaviour {
     virtual public void Die() {
         isActive = false;
         GetComponent<SpriteRenderer>().color = Color.red;
+        for (int i = 0; i < children.Length; i++)
+        {
+            if (children[i].Active()) children[i].Invoke("Die", 1f);
+        }
         //GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    virtual public void activateAllChildren()
+    {
+        foreach (Tower tower in children)
+        {
+            tower.SetActive();
+            tower.Invoke("activateAllChildren", 1f);
+        }
     }
 
     public bool Active() {
@@ -71,9 +91,11 @@ public class TowerBase : MonoBehaviour {
 
     public void SetActive() {
         OnActivation();
-        //if (parentTower.Active()) {
-        //    isActive = true;
-        //}
+        if (parentTower.Active())
+        {
+            isActive = true;
+            GetComponent<SpriteRenderer>().color = Color.green;
+        }
 
     }
 }
