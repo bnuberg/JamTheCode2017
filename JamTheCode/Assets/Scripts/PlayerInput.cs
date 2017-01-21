@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour {
 
     private TowerBase currentTower;
     private TowerBase tower = null;
+    private TowerBase mainTower;
 
     bool isButtonDown = false;
     private float timer;
@@ -16,7 +17,9 @@ public class PlayerInput : MonoBehaviour {
     // Use this for initialization
     void Start () {
 	    currentTower = towerBase;
-	}
+        mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
+        mainTower.TextActivator(mainTower.children);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,18 +39,25 @@ public class PlayerInput : MonoBehaviour {
             {
                 hasActiveChild = true;
                 currentTower.GetComponent<SpriteRenderer>().color = Color.magenta;
+                     
+                
             }
         }
+        
         if (!hasActiveChild)
         {
             currentTower = towerBase;
-        }
+        } 
 
         if (Input.GetButtonDown("X"))
         {
-            Debug.Log("0");
+         
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
+            mainTower.ResetTextTowers();
+           
+            
             if (tower != null) {
+                tower.TextActivator(tower.children);
                 if (tower.Active()) {
                     Explosion(tower);
                 }
@@ -58,7 +68,11 @@ public class PlayerInput : MonoBehaviour {
             }
         } else if (Input.GetButtonDown("Circle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Circle);
+            mainTower.ResetTextTowers();
+
+           
             if (tower != null) {
+                tower.TextActivator(tower.children);
                 if (tower.Active()) {
                     Explosion(tower);
                 }
@@ -67,10 +81,13 @@ public class PlayerInput : MonoBehaviour {
                 //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
                 //currentTower = towerBase;
             }
-            Debug.Log("1");
+         
         } else if (Input.GetButtonDown("Square")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Square);
+            mainTower.ResetTextTowers();
+            
             if (tower != null) {
+            tower.TextActivator(tower.children);
                 if (tower.Active()) {
                     Explosion(tower);
                 }
@@ -79,10 +96,13 @@ public class PlayerInput : MonoBehaviour {
                 //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
                 //currentTower = towerBase;
             }
-            Debug.Log("2");
-        } else if (Input.GetButtonDown("Triangle")) {
+            
+        } else if (Input.GetButtonDown("Triangle")) {   
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Triangle);
+            mainTower.ResetTextTowers();
+           
             if (tower != null) {
+                tower.TextActivator(tower.children);
                 if (tower.Active()) {
                     Explosion(tower);
                 }
@@ -97,6 +117,7 @@ public class PlayerInput : MonoBehaviour {
         if (currentTower.children.Length == 0) {
             currentTower.GetComponent<SpriteRenderer>().color = Color.green;
             currentTower = towerBase;
+            currentTower.TextActivator(currentTower.children);
         }
     }
 

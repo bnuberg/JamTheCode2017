@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerBase : MonoBehaviour {
     [SerializeField]
@@ -14,7 +15,15 @@ public class TowerBase : MonoBehaviour {
 
     [SerializeField]
     protected bool isActive = true;
+    private Text inputText;
 
+    public enum ActivateKeys
+    {
+        X = 0,
+        Circle = 1,
+        Square = 2,
+        Triangle = 3
+    }
     // Use this for initialization
     void Start () {
 		//children = new Tower[4];
@@ -25,8 +34,27 @@ public class TowerBase : MonoBehaviour {
 	void Update () {
 		
 	}
+    
+   
+    public void TextActivator(Tower[] children)
+    {
+        foreach (Tower child in children)
+        {
+            child.inputText = child.GetComponentInChildren<Text>();
+            child.inputText.text = child.InputToString(child.GetActivationKey());
+        }
+    }
 
-	public void SetParent(TowerBase tower) {
+    virtual public void ResetTextTowers()
+    {
+        foreach (Tower tower in children)
+        {
+            tower.GetComponentInChildren<Text>().text = "";
+            tower.ResetTextTowers();
+        }
+    }
+
+    public void SetParent(TowerBase tower) {
 		parentTower = tower;
 	}
 
