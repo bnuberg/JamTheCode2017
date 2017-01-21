@@ -8,13 +8,6 @@ public class Tower : TowerBase {
     [SerializeField]
     private Text inputText;
 
-    public enum ActivateKeys {
-        X=0,
-        Circle=1,
-        Square=2,
-        Triangle=3
-    }
-
 	// Use this for initialization
 	void Start () {
         if (isActive) {
@@ -93,19 +86,14 @@ public class Tower : TowerBase {
 
     public override void Die() {
         base.Die();
-
-        if (parentTower != null && parentTower.Active() && parentTower.name != "MainTower") {
-            //parentTower.Die();
-        }
-
-        for (int i = 0; i < children.Length; i++) {
-            if (children[i].Active()) children[i].Invoke("Die", 1f);
-        }
     }
 
 	public ActivateKeys GetActivationKey() {
 		return activationKey;
 	}
-
     
+    public override void activateAllChildren()
+    {
+        base.activateAllChildren();
+    }
 }
