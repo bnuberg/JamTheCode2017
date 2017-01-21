@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4817662501866506}
   - component: {fileID: 212649803163207230}
-  - component: {fileID: 58645239142575624}
   - component: {fileID: 114178989251557470}
+  - component: {fileID: 135762655256059234}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Explosion
@@ -42,20 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!58 &58645239142575624
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1060780877726328}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &114178989251557470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,6 +55,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transparencySpeed: 0.02
   sizeMultiplier: 2
+--- !u!135 &135762655256059234
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1060780877726328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212649803163207230
 SpriteRenderer:
   m_ObjectHideFlags: 1

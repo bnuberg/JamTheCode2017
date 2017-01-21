@@ -19,6 +19,10 @@ public class TowerBase : MonoBehaviour {
     [SerializeField]
     protected bool isActive = true;
 
+    [SerializeField]
+    private GameObject fireSpawn;
+    [SerializeField]
+    private GameObject magicBall;
     public enum ActivateKeys
     {
         X = 0,
@@ -46,6 +50,15 @@ public class TowerBase : MonoBehaviour {
 	}
 
 
+    public void Shoot(GameObject enemy)
+    {
+
+        Debug.Log(fireSpawn.transform.position);
+
+        GameObject newMagicBall = Instantiate(magicBall);
+        newMagicBall.transform.position = fireSpawn.transform.position;
+        newMagicBall.GetComponent<MagicBallController>().SetTarget(enemy);
+    }
     public void TextActivator(Tower[] children)
     {
         
