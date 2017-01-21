@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour {
 
 	    GetTowers();
 
-        Debug.Log(towers.Count);
+        //Debug.Log(towers.Count);
 
     }
 
@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour {
                 minDist = dist;
             }
         }
-        Debug.Log(tMin);
+        //Debug.Log(tMin);
         return tMin;
     }
 

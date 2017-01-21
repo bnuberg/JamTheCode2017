@@ -125,9 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
-  children:
-  - {fileID: 0}
-  - {fileID: 0}
+  children: []
+  explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
   isActive: 0
   activationKey: 2
   inputText: {fileID: 114569213952335774}

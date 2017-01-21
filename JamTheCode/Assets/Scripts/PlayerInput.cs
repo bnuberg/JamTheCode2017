@@ -85,7 +85,7 @@ public class PlayerInput : MonoBehaviour {
         if (isButtonDown)
         {
             timer += Time.deltaTime;
-            Debug.Log("Timer: " + timer);
+            //Debug.Log("Timer: " + timer);
         }
 
         if (timer > activationTime)
@@ -97,7 +97,7 @@ public class PlayerInput : MonoBehaviour {
             }
             timer = 0;
         }
-
+        
         if (currentTower.children.Length == 0) {
             currentTower.GetComponent<SpriteRenderer>().color = Color.green;
             currentTower = towerBase;

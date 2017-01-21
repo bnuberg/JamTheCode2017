@@ -144,6 +144,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 279653189}
     m_Modifications:
+    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
+        type: 2}
+      propertyPath: children.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
       propertyPath: m_LocalPosition.x
       value: -3.74
@@ -296,6 +301,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 279653189}
     m_Modifications:
+    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
+        type: 2}
+      propertyPath: children.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
       propertyPath: m_LocalPosition.x
       value: -3.69
@@ -502,6 +512,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 279653189}
     m_Modifications:
+    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
+        type: 2}
+      propertyPath: children.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.89
@@ -810,6 +825,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 279653189}
     m_Modifications:
+    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
+        type: 2}
+      propertyPath: children.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.42
@@ -1064,6 +1084,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 279653189}
     m_Modifications:
+    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
+        type: 2}
+      propertyPath: children.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.92
@@ -1390,7 +1415,7 @@ MonoBehaviour:
   - {fileID: 1717191213}
   - {fileID: 1684679347}
   - {fileID: 153970456}
-  explosion: {fileID: 0}
+  explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
   isActive: 1
 --- !u!58 &1976232704
 CircleCollider2D:
@@ -1491,6 +1516,11 @@ Prefab:
       propertyPath: children.Array.data[1]
       value: 
       objectReference: {fileID: 1312977681}
+    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
+        type: 2}
+      propertyPath: activationKey
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
   m_IsPrefabParent: 0
