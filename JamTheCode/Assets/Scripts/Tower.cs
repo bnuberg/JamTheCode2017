@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class Tower : TowerBase {
-    [SerializeField]
+    //[SerializeField]
 	private ActivateKeys activationKey;
     [SerializeField]
     public Text inputText;
@@ -12,12 +12,6 @@ public class Tower : TowerBase {
 
     protected override void Start() {
 	    base.Start();
-
-        if (isActive) {
-            GetComponent<SpriteRenderer>().color = Color.green;
-        } else {
-            GetComponent<SpriteRenderer>().color = Color.red;
-        }
 
         InputToColor(GetActivationKey());
         inputText.text = "";
@@ -30,6 +24,7 @@ public class Tower : TowerBase {
 
     private void InputToColor(ActivateKeys key)
     {
+        Debug.Log("Key: " + key);
         string inputText = "";
 
         switch (key)
@@ -93,6 +88,11 @@ public class Tower : TowerBase {
 	public ActivateKeys GetActivationKey() {
 		return activationKey;
 	}
+
+    public void SetActivationKey(ActivateKeys key)
+    {
+        activationKey = key;
+    }
     
     public override void activateAllChildren()
     {

@@ -101,7 +101,7 @@ public class PlayerInput : MonoBehaviour {
     }
     void Explosion(TowerBase tower)
     {
-        tower.SetActive();
+        tower.Explosion();
         //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
         ChangeCurrenTower(tower);
     }
