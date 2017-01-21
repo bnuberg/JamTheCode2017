@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
+    private GameObject mainTower;
 
     [SerializeField]
     private GameObject enemy;
@@ -24,6 +25,8 @@ public class EnemyManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        mainTower = GameObject.Find("MainTower");
+
         interval = 2f;
         spawnPositions = new List<Vector2>();
         waveCount = 0;
@@ -54,7 +57,7 @@ public class EnemyManager : MonoBehaviour
                 SpawnEnemy();
                 yield return new WaitForSeconds(1f);
             }
-            //TODO: RESET ALL TOWERS FUNCTION
+
             waveEnemyAmount *= 2;
             yield return new WaitForSeconds(15f);
             UpdateWaveCount();
@@ -66,6 +69,7 @@ public class EnemyManager : MonoBehaviour
 
     private void UpdateWaveCount()
     {
+        mainTower.GetComponent<TowerBase>().activateAllChildren();
         waveCount++;
         waveCountText.text = "Wave: " + waveCount;
     }
