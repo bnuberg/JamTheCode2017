@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -8,8 +9,15 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private GameObject enemy;
     private float interval;
-
+    
     public float spawnDistance;
+
+    private int waveCount;
+    private int waveEnemyAmount;
+    [SerializeField]
+    private Text waveCountText;
+    [SerializeField]
+    private Text waveCountMessage;
 
     private List<Vector2> spawnPositions;
 
@@ -19,6 +27,8 @@ public class EnemyManager : MonoBehaviour
         interval = 2f;
         spawnPositions = new List<Vector2>();
         spawnDistance = 10f;
+        waveCount = 0;
+        waveEnemyAmount = 15;
         StartCoroutine(EnemySpawner());
     }
 
@@ -30,16 +40,47 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator EnemySpawner()
     {
+
+
+        UpdateWaveCount();
+        yield return new WaitForSeconds(1f);
+        UpdateWaveMiddle();
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            
+            yield return new WaitForSeconds(1.5f);
+            waveCountMessage.text = "";
+            for (int i = 0; i < waveEnemyAmount; i++)
+            {
+                SpawnEnemy();
+                yield return new WaitForSeconds(1f);
+            }
+            //RESET ALL TOWERS FUNCTION
+            waveEnemyAmount *= 2;
+            yield return new WaitForSeconds(15f);
+            UpdateWaveCount();
+            UpdateWaveMiddle();
 
-            Vector2 randomPosition = RandomCircle(this.transform.position, spawnDistance);
-            Instantiate(enemy, randomPosition, Quaternion.identity);
         }
 
     }
 
+    private void UpdateWaveCount()
+    {
+        waveCount++;
+        waveCountText.text = "Wave: " + waveCount;
+    }
+
+    private void UpdateWaveMiddle()
+    {
+        waveCountMessage.text = "Wave: " + waveCount;
+    }
+
+    private void SpawnEnemy()
+    {
+        Vector2 randomPosition = RandomCircle(this.transform.position, spawnDistance);
+        Instantiate(enemy, randomPosition, Quaternion.identity);
+    }
     private Vector3 RandomCircle(Vector3 center, float radius)
     {
         // create random angle between 0 to 360 degrees
