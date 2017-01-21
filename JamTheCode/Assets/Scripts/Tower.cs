@@ -25,7 +25,6 @@ public class Tower : TowerBase {
 
     private void InputToColor(ActivateKeys key)
     {
-        Debug.Log("Key: " + key);
         string inputText = "";
 
         switch (key)

@@ -47,10 +47,16 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         currentPosition = this.transform.position;
-        closestTower = GetClosestTower(currentPosition);
+        if (closestTower == null || !closestTower.Active())
+        {
+            closestTower = GetClosestTower(currentPosition);
+        }
 
-        transform.position = Vector3.MoveTowards(currentPosition, closestTower.transform.position, Time.deltaTime*speed);
-        transform.LookAt(closestTower.transform);
+	    if (closestTower != null)
+        {
+            transform.position = Vector3.MoveTowards(currentPosition, closestTower.transform.position, Time.deltaTime * speed);
+            transform.LookAt(closestTower.transform);
+        }
     }
 
     private TowerBase GetClosestTower(Vector3 currentPos) {
