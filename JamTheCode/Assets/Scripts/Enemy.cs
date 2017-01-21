@@ -35,10 +35,11 @@ public class Enemy : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Explosion")) {
             closestTower.Shoot(this.gameObject);
-            Explode();
             GameObject player = GameObject.Find("MainTower");
             Combo comboScript = player.GetComponent<Combo>();
             comboScript.EnemyDied();
+            Explode();
+            
 
         }
     }
