@@ -71,9 +71,9 @@ public class TowerBase : MonoBehaviour {
 
     public void SetActive() {
         OnActivation();
-        if (parentTower.Active()) {
-            isActive = true;
-            GetComponent<SpriteRenderer>().color = Color.cyan;
-        }
+        //if (parentTower.Active()) {
+        //    isActive = true;
+        //}
+
     }
 }
