@@ -331,7 +331,7 @@ Prefab:
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}
       propertyPath: isActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1495162916811536, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
       propertyPath: m_Name
@@ -629,7 +629,7 @@ Prefab:
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}
       propertyPath: isActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}
@@ -934,7 +934,7 @@ Prefab:
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}
       propertyPath: isActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}
@@ -1177,7 +1177,7 @@ Prefab:
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}
       propertyPath: isActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}
@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerBase: {fileID: 1976232703}
-  activationTime: 0.5
+  activationTime: 0.1
 --- !u!1001 &2043689392
 Prefab:
   m_ObjectHideFlags: 0
@@ -1474,7 +1474,7 @@ Prefab:
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}
       propertyPath: isActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
         type: 2}

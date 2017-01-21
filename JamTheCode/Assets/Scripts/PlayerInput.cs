@@ -93,21 +93,21 @@ public class PlayerInput : MonoBehaviour {
             Debug.Log(tower);
             if (tower != null)
             {
-                tower.SetActive();
-                currentTower = tower;
+                Explosion(tower);
             }
             timer = 0;
         }
 
         if (currentTower.children.Length == 0) {
+            currentTower.GetComponent<SpriteRenderer>().color = Color.green;
             currentTower = towerBase;
         }
     }
 
     void Explosion(TowerBase tower)
     {
-        currentTower.GetComponent<SpriteRenderer>().color = Color.green;
         tower.SetActive();
+        currentTower.GetComponent<SpriteRenderer>().color = Color.green;
         currentTower = tower;
     }
 }

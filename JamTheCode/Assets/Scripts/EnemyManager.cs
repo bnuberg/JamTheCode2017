@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        interval = 0.5f;
+        interval = 2f;
         spawnPositions = new List<Vector2>();
         spawnDistance = 10f;
         StartCoroutine(EnemySpawner());
