@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Explosion")) {
-            Destroy(this.gameObject);
+            Explode();
         }
     }
 	
@@ -62,6 +62,12 @@ public class Enemy : MonoBehaviour {
         }
         //Debug.Log(tMin);
         return tMin;
+    }
+    void Explode()
+    {
+        ParticleSystem exp = GetComponent<ParticleSystem>();
+        exp.Play();
+        Destroy(this.gameObject, exp.main.duration);
     }
 
 }
