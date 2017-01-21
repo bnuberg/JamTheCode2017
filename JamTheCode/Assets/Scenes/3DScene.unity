@@ -212,12 +212,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a,
     type: 2}
   m_PrefabInternal: {fileID: 1320974731}
---- !u!114 &292387036 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1320974731}
-  m_Script: {fileID: 11500000, guid: 8e77674c1be9afa459e707f44608c3cc, type: 3}
 --- !u!1 &308574304
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,12 +281,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a,
     type: 2}
   m_PrefabInternal: {fileID: 1312232205}
---- !u!114 &337303607 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1312232205}
-  m_Script: {fileID: 11500000, guid: 8e77674c1be9afa459e707f44608c3cc, type: 3}
 --- !u!1001 &343880412
 Prefab:
   m_ObjectHideFlags: 0
@@ -939,16 +927,6 @@ Prefab:
       propertyPath: parentTower
       value: 
       objectReference: {fileID: 1976232703}
-    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
-        type: 2}
-      propertyPath: children.Array.data[0]
-      value: 
-      objectReference: {fileID: 292387036}
-    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
-        type: 2}
-      propertyPath: children.Array.data[1]
-      value: 
-      objectReference: {fileID: 1376127464}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
   m_IsPrefabParent: 0
@@ -957,12 +935,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a,
     type: 2}
   m_PrefabInternal: {fileID: 653224699}
---- !u!114 &1376127464 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
-    type: 2}
-  m_PrefabInternal: {fileID: 653224699}
-  m_Script: {fileID: 11500000, guid: 8e77674c1be9afa459e707f44608c3cc, type: 3}
 --- !u!1 &1526282198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,12 +1022,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 128.242, y: 180, z: 180}
---- !u!114 &1571522195 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
-    type: 2}
-  m_PrefabInternal: {fileID: 2126809301}
-  m_Script: {fileID: 11500000, guid: 8e77674c1be9afa459e707f44608c3cc, type: 3}
 --- !u!4 &1571522198 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4640968574567706, guid: d932e08c4820a2e45b46094bf936b58a,
@@ -1179,16 +1145,6 @@ Prefab:
       propertyPath: parentTower
       value: 
       objectReference: {fileID: 1976232703}
-    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
-        type: 2}
-      propertyPath: children.Array.data[0]
-      value: 
-      objectReference: {fileID: 337303607}
-    - target: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,
-        type: 2}
-      propertyPath: children.Array.data[1]
-      value: 
-      objectReference: {fileID: 1571522195}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d932e08c4820a2e45b46094bf936b58a, type: 2}
   m_IsPrefabParent: 0
