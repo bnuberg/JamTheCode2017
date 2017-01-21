@@ -26,7 +26,6 @@ public class EnemyManager : MonoBehaviour
     {
         interval = 2f;
         spawnPositions = new List<Vector2>();
-        spawnDistance = 10f;
         waveCount = 0;
         waveEnemyAmount = 15;
         StartCoroutine(EnemySpawner());
@@ -55,7 +54,7 @@ public class EnemyManager : MonoBehaviour
                 SpawnEnemy();
                 yield return new WaitForSeconds(1f);
             }
-            //RESET ALL TOWERS FUNCTION
+            //TODO: RESET ALL TOWERS FUNCTION
             waveEnemyAmount *= 2;
             yield return new WaitForSeconds(15f);
             UpdateWaveCount();

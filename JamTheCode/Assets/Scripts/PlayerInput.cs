@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour {
     [SerializeField] private TowerBase towerBase;
 
-    private TowerBase currentTower;
+    public TowerBase currentTower;
     private TowerBase tower = null;
 
     bool isButtonDown = false;
@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour {
             if (currentTower.children[i].Active())
             {
                 hasActiveChild = true;
-                currentTower.GetComponent<SpriteRenderer>().color = Color.magenta;
+                //currentTower.GetComponent<SpriteRenderer>().color = Color.magenta;
             }
         }
         if (!hasActiveChild)
