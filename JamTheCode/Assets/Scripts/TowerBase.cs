@@ -8,6 +8,9 @@ public class TowerBase : MonoBehaviour {
     [SerializeField]
     public Tower[] children;
 
+    [SerializeField]
+    private GameObject explosion;
+
 
     [SerializeField]
     protected bool isActive = true;
@@ -50,6 +53,11 @@ public class TowerBase : MonoBehaviour {
             Die();
         }
     }
+    
+    public void OnActivation() {
+        GameObject go = Instantiate(explosion, transform);
+        go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
 
     virtual public void Die() {
         isActive = false;
@@ -62,9 +70,10 @@ public class TowerBase : MonoBehaviour {
     }
 
     public void SetActive() {
-        if (parentTower.Active()) {
-            isActive = true;
-            GetComponent<SpriteRenderer>().color = Color.green;
-        }
+        OnActivation();
+        //if (parentTower.Active()) {
+        //    isActive = true;
+        //}
+
     }
 }

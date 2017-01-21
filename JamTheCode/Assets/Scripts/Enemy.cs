@@ -15,14 +15,14 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rigidBody = this.GetComponent<Rigidbody2D>();
-        speed = 2.5f;
+        speed = 0.5f;
 
 
 
 
 	    GetTowers();
 
-        Debug.Log(towers.Count);
+        //Debug.Log(towers.Count);
 
     }
 
@@ -31,6 +31,12 @@ public class Enemy : MonoBehaviour {
         towers = new List<TowerBase>();
         for (int i = 0; i < towersTEMP.Length; i++) {
             towers.Add(towersTEMP[i].GetComponent<TowerBase>());
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Explosion")) {
+            Destroy(this.gameObject);
         }
     }
 	
@@ -57,7 +63,7 @@ public class Enemy : MonoBehaviour {
                 minDist = dist;
             }
         }
-        Debug.Log(tMin);
+        //Debug.Log(tMin);
         return tMin;
     }
 

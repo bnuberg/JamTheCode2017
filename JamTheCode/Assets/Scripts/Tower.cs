@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Tower : TowerBase {
     [SerializeField]
 	private ActivateKeys activationKey;
+    [SerializeField]
+    private Text inputText;
 
     public enum ActivateKeys {
         X=0,
@@ -15,12 +17,13 @@ public class Tower : TowerBase {
 
 	// Use this for initialization
 	void Start () {
-
         if (isActive) {
             GetComponent<SpriteRenderer>().color = Color.green;
         } else {
             GetComponent<SpriteRenderer>().color = Color.red;
         }
+        
+        inputText.text = InputToText(GetActivationKey());
     }
 	
 	// Update is called once per frame
@@ -28,6 +31,30 @@ public class Tower : TowerBase {
         
 	}
 
+    private string InputToText(ActivateKeys key)
+    {
+        string inputText = "";
+
+        switch (key)
+        {
+            case ActivateKeys.X:
+                inputText = "S";
+                break;
+            case ActivateKeys.Circle:
+                inputText = "D";
+                break;
+            case ActivateKeys.Square:
+                inputText = "A";
+                break;
+            case ActivateKeys.Triangle:
+                inputText = "w";
+                break;
+            default:
+                break;
+        }
+
+        return inputText;
+    }
     void OnMouseDown() {
         SetActive();
         
@@ -37,15 +64,13 @@ public class Tower : TowerBase {
         base.Die();
 
         if (parentTower != null && parentTower.Active() && parentTower.name != "MainTower") {
-            parentTower.Die();
+            //parentTower.Die();
         }
 
         for (int i = 0; i < children.Length; i++) {
-            if (children[i].Active()) children[i].Die();
+            if (children[i].Active()) children[i].Invoke("Die", 1f);
         }
     }
-
-
 
 	public ActivateKeys GetActivationKey() {
 		return activationKey;

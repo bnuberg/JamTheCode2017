@@ -5,10 +5,16 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour {
     [SerializeField] private TowerBase towerBase;
 
-    private TowerBase currentTower;
+    public TowerBase currentTower;
+    private TowerBase tower = null;
 
-	// Use this for initialization
-	void Start () {
+    bool isButtonDown = false;
+    private float timer;
+    [SerializeField]
+    private float activationTime = 1f;
+
+    // Use this for initialization
+    void Start () {
 	    currentTower = towerBase;
 	}
 	
@@ -19,30 +25,85 @@ public class PlayerInput : MonoBehaviour {
     }
 
     private void InputHandler() {
-        TowerBase tower;
-        if (Input.GetButtonDown("X")) {
-            tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
-            tower.SetActive();
-            currentTower = tower;
+        if (!currentTower.Active()) {
+            currentTower = towerBase;
+        }
+
+        bool hasActiveChild = false;
+        for (int i = 0; i < currentTower.children.Length; i++)
+        {
+            if (currentTower.children[i].Active())
+            {
+                hasActiveChild = true;
+                //currentTower.GetComponent<SpriteRenderer>().color = Color.magenta;
+            }
+        }
+        if (!hasActiveChild)
+        {
+            currentTower = towerBase;
+        }
+
+        if (Input.GetButtonDown("X"))
+        {
             Debug.Log("0");
+            tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
+            if (tower != null) {
+                if (tower.Active()) {
+                    Explosion(tower);
+                }
+            } else {
+                //TODO Enter combo breaker
+                //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+                //currentTower = towerBase;
+            }
         } else if (Input.GetButtonDown("Circle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Circle);
-            tower.SetActive();
-            currentTower = tower;
+            if (tower != null) {
+                if (tower.Active()) {
+                    Explosion(tower);
+                }
+            } else {
+                //TODO Enter combo breaker
+                //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+                //currentTower = towerBase;
+            }
             Debug.Log("1");
         } else if (Input.GetButtonDown("Square")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Square);
-            tower.SetActive();
-            currentTower = tower;
+            if (tower != null) {
+                if (tower.Active()) {
+                    Explosion(tower);
+                }
+            } else {
+                //TODO Enter combo breaker
+                //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+                //currentTower = towerBase;
+            }
             Debug.Log("2");
         } else if (Input.GetButtonDown("Triangle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Triangle);
-            tower.SetActive();
-            currentTower = tower;
+            if (tower != null) {
+                if (tower.Active()) {
+                    Explosion(tower);
+                }
+            } else {
+                //TODO Enter combo breaker
+                //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+                //currentTower = towerBase;
+            }
+            
         }
-
+        
         if (currentTower.children.Length == 0) {
+            currentTower.GetComponent<SpriteRenderer>().color = Color.green;
             currentTower = towerBase;
         }
+    }
+
+    void Explosion(TowerBase tower)
+    {
+        tower.SetActive();
+        currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+        currentTower = tower;
     }
 }
