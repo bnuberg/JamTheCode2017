@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class TowerBase : MonoBehaviour {
     [SerializeField]
     public TowerBase parentTower;
     [SerializeField]
     public Tower[] children;
-
+    private TowerBase mainTower;
     [SerializeField]
     private GameObject explosion;
 
@@ -26,6 +26,7 @@ public class TowerBase : MonoBehaviour {
     // Use this for initialization
     void Start () {
         GetComponent<SpriteRenderer>().color = Color.green;
+        mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
     }
 	
 	// Update is called once per frame
@@ -33,7 +34,30 @@ public class TowerBase : MonoBehaviour {
 		
 	}
 
-	public void SetParent(TowerBase tower) {
+
+    public void TextActivator(Tower[] children)
+    {
+        
+        foreach (Tower child in children)
+        {
+            if (child.isActive)
+            {
+                child.inputText = child.GetComponentInChildren<Text>();
+                child.inputText.text = child.InputToString(child.GetActivationKey());
+            }
+     
+        }
+    }
+
+    virtual public void ResetTextTowers()
+    {
+        foreach (Tower tower in children)
+        {
+            tower.GetComponentInChildren<Text>().text = "";
+            tower.ResetTextTowers();
+        }
+    }
+    public void SetParent(TowerBase tower) {
 		parentTower = tower;
 	}
 
@@ -68,7 +92,10 @@ public class TowerBase : MonoBehaviour {
 
     virtual public void Die() {
         isActive = false;
-        GetComponent<SpriteRenderer>().color = Color.red;
+        GetComponent<SpriteRenderer>().enabled = false;
+
+        ResetTextTowers();
+        this.gameObject.GetComponentInChildren<Text>().text = "";
         for (int i = 0; i < children.Length; i++)
         {
             if (children[i].Active()) children[i].Invoke("Die", 1f);
@@ -93,8 +120,9 @@ public class TowerBase : MonoBehaviour {
         OnActivation();
         if (parentTower.Active())
         {
+            GetComponent<SpriteRenderer>().enabled = true;
             isActive = true;
-            GetComponent<SpriteRenderer>().color = Color.green;
+            //GetComponent<SpriteRenderer>().color = Color.green;
         }
 
     }
