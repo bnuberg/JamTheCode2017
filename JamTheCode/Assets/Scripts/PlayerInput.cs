@@ -51,21 +51,19 @@ public class PlayerInput : MonoBehaviour {
         {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
             HandlePlayerInput(tower);
-                    success = 1;
-                    Debug.Log(success);
-                success = -1;
+                    
+                
         } else if (Input.GetButtonDown("Circle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Circle);
             HandlePlayerInput(tower);
-                    success = 1;
-                success = -1;
+                    
         } else if (Input.GetButtonDown("Square")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Square);
             HandlePlayerInput(tower);
         } else if (Input.GetButtonDown("Triangle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Triangle);
             HandlePlayerInput(tower);
-                    success = 1;
+                    
         }
         
         if (currentTower.children.Length == 0) {
@@ -89,6 +87,7 @@ public class PlayerInput : MonoBehaviour {
         }
         else
         {
+            success = -1;
             //TODO Enter combo breaker
             //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
             //currentTower = towerBase;
