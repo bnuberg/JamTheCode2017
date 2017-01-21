@@ -79,6 +79,8 @@ public class Enemy : MonoBehaviour {
     {
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();
+        transform.FindChild("Bomb_Roll").gameObject.SetActive(false);
+        speed = 0;
         Destroy(this.gameObject, exp.main.duration);
     }
 
