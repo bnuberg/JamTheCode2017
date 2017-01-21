@@ -15,8 +15,11 @@ public class Tower : TowerBase {
         Triangle=3
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+
+    protected override void Start() {
+	    base.Start();
+
         if (isActive) {
             GetComponent<SpriteRenderer>().color = Color.green;
         } else {

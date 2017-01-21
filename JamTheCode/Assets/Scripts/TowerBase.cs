@@ -11,14 +11,25 @@ public class TowerBase : MonoBehaviour {
     [SerializeField]
     private GameObject explosion;
 
+    [SerializeField]
+    private Animation animations;
+    private GameObject ashes;
+
 
     [SerializeField]
     protected bool isActive = true;
 
     // Use this for initialization
-    void Start () {
-		//children = new Tower[4];
+    protected virtual void Start () {
+        //children = new Tower[4];
         //GetComponent<SpriteRenderer>().color = Color.green;
+
+        animations = gameObject.GetComponentInChildren<Animation>();
+        //ashes =
+
+        //animations = GameObject.Find("TowerV1").GetComponent<Animation>();
+
+        if (!isActive) animations.Play("Destroyed");
     }
 	
 	// Update is called once per frame
@@ -48,7 +59,7 @@ public class TowerBase : MonoBehaviour {
 		return null;
 	}
     
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Enemy")) {
             Die();
         }
@@ -60,6 +71,12 @@ public class TowerBase : MonoBehaviour {
     }
 
     virtual public void Die() {
+        if (!isActive) return;
+
+        //TODO REMOVE WHEN MAIN TOWER HAS MODEL
+        if (gameObject.name != "MainTower") {
+            animations.Play("Destruction");
+        }
         isActive = false;
         GetComponent<SpriteRenderer>().color = Color.red;
         //GetComponent<SpriteRenderer>().enabled = false;
@@ -73,6 +90,7 @@ public class TowerBase : MonoBehaviour {
         OnActivation();
         if (parentTower.Active()) {
             isActive = true;
+            animations.Play("Repair");
             GetComponent<SpriteRenderer>().color = Color.cyan;
         }
     }

@@ -11,13 +11,13 @@ public class EnemyManager : MonoBehaviour
 
     public float spawnDistance;
 
-    private List<Vector2> spawnPositions;
+    private List<Vector3> spawnPositions;
 
     // Use this for initialization
     void Start()
     {
         interval = 2f;
-        spawnPositions = new List<Vector2>();
+        spawnPositions = new List<Vector3>();
         spawnDistance = 10f;
         StartCoroutine(EnemySpawner());
     }
@@ -32,9 +32,9 @@ public class EnemyManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(interval);
 
-            Vector2 randomPosition = RandomCircle(this.transform.position, spawnDistance);
+            Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
             Instantiate(enemy, randomPosition, Quaternion.identity);
         }
 
@@ -46,8 +46,10 @@ public class EnemyManager : MonoBehaviour
         float ang = Random.value * 360;
         Vector3 pos;
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
-        pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
-        pos.z = center.z;
+        pos.y = center.y;
+        pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        //pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        //pos.z = center.z;
 
         return pos;
     }
