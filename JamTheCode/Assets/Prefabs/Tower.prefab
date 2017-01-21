@@ -1787,15 +1787,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
-  children:
-  - {fileID: 0}
+  children: []
   explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
   animations: {fileID: 0}
   isActive: 1
   fireSpawn: {fileID: 1502809133959618}
   magicBall: {fileID: 1323273494179182, guid: f027449978407c849be51babbd00211e, type: 2}
   connector: {fileID: 1479019689216520, guid: 51a97d6a43b4ad84995cad3c82507c19, type: 2}
-  buildConnections: 0
+  buildConnections: 1
   activationKey: 1
   inputText: {fileID: 114569213952335774}
 --- !u!114 &114508518756545588
