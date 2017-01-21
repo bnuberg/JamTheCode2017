@@ -12,15 +12,16 @@ public class Enemy : MonoBehaviour {
     private List<TowerBase> towers;
     private Vector3 closestTower;
     private Vector3 currentPosition;
+    private float offset;
 	// Use this for initialization
 	void Start () {
         //rigidBody = this.GetComponent<Rigidbody2D>();
         speed = 0.5f;
-
+        offset = 1f;
 	    GetTowers();
 
         //Debug.Log(towers.Count);
-
+        transform.position = new Vector3(transform.position.x, transform.position.y + offset, transform.position.z);
     }
 
     void GetTowers() {
