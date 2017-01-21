@@ -25,6 +25,7 @@ public class TowerBase : MonoBehaviour {
     private GameObject magicBall;
 
     [SerializeField] private GameObject connector;
+    [SerializeField] private bool buildConnections;
     public enum ActivateKeys
     {
         X = 0,
@@ -45,18 +46,23 @@ public class TowerBase : MonoBehaviour {
 
         if (!isActive) animations.Play("Destroyed");
 
-        //BuildConnections();
+        BuildConnections();
     }
 
     protected void BuildConnections() {
-        for (int i = 0; i < children.Length; i++) {
-            Vector3 newPos = (transform.position + children[i].transform.position) / 2;
-            GameObject conn = Instantiate(this.connector, newPos, Quaternion.identity);
-            conn.transform.LookAt(children[i].transform);
-            conn.transform.localScale = new Vector3(0.1f, 0.2f, 2f);
+        if (buildConnections) {
+            for (int i = 0; i < children.Length; i++) {
+                //Vector3 newPos = (transform.position + children[i].transform.position) / 2;
+                GameObject conn = Instantiate(this.connector, transform.position, Quaternion.identity);
+                conn.transform.LookAt(children[i].transform);
+                conn.transform.Translate(Vector3.forward * 2, conn.transform);
+                conn.transform.localScale = new Vector3(0.1f, 0.2f, 4f);
 
+                //if (children[i].children.Length > 0) {
+                children[i].BuildConnections();
+                //}
+            }
         }
-        
     }
 	
 	// Update is called once per frame

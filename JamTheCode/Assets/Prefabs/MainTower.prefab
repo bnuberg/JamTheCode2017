@@ -139,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4261388940598236}
   - component: {fileID: 95426611498789252}
+  - component: {fileID: 111800594385638808}
   m_Layer: 0
   m_Name: TowerBase
   m_TagString: Untagged
@@ -227,6 +228,7 @@ GameObject:
   - component: {fileID: 114766202402635924}
   - component: {fileID: 114056118233664850}
   - component: {fileID: 114781704851034796}
+  - component: {fileID: 65262172030838070}
   m_Layer: 0
   m_Name: MainTower
   m_TagString: Tower
@@ -1247,6 +1249,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1122244717900380}
   m_Mesh: {fileID: 4300022, guid: 33ca7aafff6f97d409b4e87e473f37a4, type: 3}
+--- !u!65 &65262172030838070
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1696513659412600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42, y: 0.46, z: 2.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95426611498789252
 Animator:
   serializedVersion: 3
@@ -1254,7 +1268,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455918234472942}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 33ca7aafff6f97d409b4e87e473f37a4, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -1264,6 +1278,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &111800594385638808
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455918234472942}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114056118233664850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1297,10 +1325,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
-  animations: {fileID: 0}
+  animations: {fileID: 111800594385638808}
   isActive: 1
   fireSpawn: {fileID: 0}
   magicBall: {fileID: 0}
+  connector: {fileID: 1479019689216520, guid: 51a97d6a43b4ad84995cad3c82507c19, type: 2}
+  buildConnections: 0
 --- !u!114 &114781704851034796
 MonoBehaviour:
   m_ObjectHideFlags: 1
