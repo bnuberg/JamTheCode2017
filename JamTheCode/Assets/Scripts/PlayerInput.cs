@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour {
             if (currentTower.children[i].Active())
             {
                 hasActiveChild = true;
-                currentTower.GetComponent<SpriteRenderer>().color = Color.cyan;
+                currentTower.GetComponent<SpriteRenderer>().color = Color.magenta;
             }
         }
         if (!hasActiveChild)

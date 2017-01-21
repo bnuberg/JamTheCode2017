@@ -38,16 +38,16 @@ public class Tower : TowerBase {
         switch (key)
         {
             case ActivateKeys.X:
-                inputText = "A";
+                inputText = "S";
                 break;
             case ActivateKeys.Circle:
-                inputText = "B";
+                inputText = "D";
                 break;
             case ActivateKeys.Square:
-                inputText = "X";
+                inputText = "A";
                 break;
             case ActivateKeys.Triangle:
-                inputText = "Y";
+                inputText = "w";
                 break;
             default:
                 break;
