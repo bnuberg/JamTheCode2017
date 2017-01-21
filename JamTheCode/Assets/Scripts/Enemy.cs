@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour {
     private Vector3 currentPosition;
 	// Use this for initialization
 	void Start () {
-        rigidBody = this.GetComponent<Rigidbody2D>();
+        //rigidBody = this.GetComponent<Rigidbody2D>();
         speed = 0.5f;
 
 	    GetTowers();
