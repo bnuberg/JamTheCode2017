@@ -2001,6 +2001,7 @@ GameObject:
   - component: {fileID: 1976232703}
   - component: {fileID: 1976232704}
   - component: {fileID: 1976232705}
+  - component: {fileID: 1976232706}
   m_Layer: 0
   m_Name: MainTower
   m_TagString: Tower
@@ -2120,7 +2121,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerBase: {fileID: 1976232703}
   currentTower: {fileID: 0}
+  success: 0
   activationTime: 0.1
+--- !u!114 &1976232706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1976232699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542cc30c38edcc846a0e9e4001a44c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboChain: 0
+  comboTimer: 10
+  addCombo: 1
+  addComboEnemy: 2
+  playerInput: {fileID: 1976232705}
 --- !u!1001 &2043689392
 Prefab:
   m_ObjectHideFlags: 0
