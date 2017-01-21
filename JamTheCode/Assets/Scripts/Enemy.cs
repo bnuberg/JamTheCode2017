@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour {
 	void Start () {
         //rigidBody = this.GetComponent<Rigidbody2D>();
         speed = 0.5f;
-        offset = 1f;
+        offset = 0.1f;
 	    GetTowers();
 
         //Debug.Log(towers.Count);
@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour {
         closestTower = GetClosestTower(currentPosition);
 
         transform.position = Vector3.MoveTowards(currentPosition, closestTower.transform.position, Time.deltaTime*speed);
+        transform.LookAt(closestTower.transform);
     }
 
     private TowerBase GetClosestTower(Vector3 currentPos) {
@@ -68,7 +69,7 @@ public class Enemy : MonoBehaviour {
         }
         return tMin;
     }
-    void Explode()
+    public void Explode()
     {
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();

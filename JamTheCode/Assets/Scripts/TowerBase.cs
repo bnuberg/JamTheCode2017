@@ -23,6 +23,8 @@ public class TowerBase : MonoBehaviour {
     private GameObject fireSpawn;
     [SerializeField]
     private GameObject magicBall;
+
+    [SerializeField] private GameObject connector;
     public enum ActivateKeys
     {
         X = 0,
@@ -42,6 +44,19 @@ public class TowerBase : MonoBehaviour {
         //animations = GameObject.Find("TowerV1").GetComponent<Animation>();
 
         if (!isActive) animations.Play("Destroyed");
+
+        //BuildConnections();
+    }
+
+    protected void BuildConnections() {
+        for (int i = 0; i < children.Length; i++) {
+            Vector3 newPos = (transform.position + children[i].transform.position) / 2;
+            GameObject conn = Instantiate(this.connector, newPos, Quaternion.identity);
+            conn.transform.LookAt(children[i].transform);
+            conn.transform.localScale = new Vector3(0.1f, 0.2f, 2f);
+
+        }
+        
     }
 	
 	// Update is called once per frame
@@ -103,6 +118,7 @@ public class TowerBase : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Enemy")) {
             Die();
+            other.GetComponent<Enemy>().Explode();
         }
     }
     
@@ -150,8 +166,9 @@ public class TowerBase : MonoBehaviour {
         if (parentTower.Active())
         {
             GetComponent<SpriteRenderer>().enabled = true;
+            if (!isActive) animations.Play("Repair");
+
             isActive = true;
-            animations.Play("Repair");
         }
 
     }
