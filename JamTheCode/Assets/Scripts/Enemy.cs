@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rigidBody = this.GetComponent<Rigidbody2D>();
-        speed = 2.5f;
+        speed = 0.5f;
 
 
 

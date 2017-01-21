@@ -1418,6 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerBase: {fileID: 1976232703}
+  activationTime: 0.5
 --- !u!1001 &2043689392
 Prefab:
   m_ObjectHideFlags: 0
