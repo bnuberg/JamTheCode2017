@@ -88,6 +88,7 @@ public class EnemyManager : MonoBehaviour
     }
     private Vector3 RandomCircle(Vector3 center, float radius)
     {
+        Debug.Log("Radius " + radius);
         // create random angle between 0 to 360 degrees
         float ang = Random.value * 360;
         Vector3 pos;
