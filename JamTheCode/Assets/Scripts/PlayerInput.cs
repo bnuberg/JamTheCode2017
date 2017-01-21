@@ -33,46 +33,62 @@ public class PlayerInput : MonoBehaviour {
         {
             Debug.Log("0");
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
-            if (tower.Active())
-            {
-                Explosion(tower);
-            }
-            else
-            {
-                isButtonDown = true;
+            if (tower != null) {
+                if (tower.Active()) {
+                    Explosion(tower);
+                }
+                else {
+                    isButtonDown = true;
+                }
+            } else {
+                //TODO Enter combo breaker
+                currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+                currentTower = towerBase;
             }
         } else if (Input.GetButtonDown("Circle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Circle);
-            if (tower.Active())
-            {
-                Explosion(tower);
-            }
-            else
-            {
-                isButtonDown = true;
+            if (tower != null) {
+                if (tower.Active()) {
+                    Explosion(tower);
+                }
+                else {
+                    isButtonDown = true;
+                }
+            } else {
+                //TODO Enter combo breaker
+                currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+                currentTower = towerBase;
             }
             Debug.Log("1");
         } else if (Input.GetButtonDown("Square")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Square);
-            if (tower.Active())
-            {
-                Explosion(tower);
-            }
-            else
-            {
-                isButtonDown = true;
+            if (tower != null) {
+                if (tower.Active()) {
+                    Explosion(tower);
+                }
+                else {
+                    isButtonDown = true;
+                }
+            } else {
+                //TODO Enter combo breaker
+                currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+                currentTower = towerBase;
             }
             Debug.Log("2");
         } else if (Input.GetButtonDown("Triangle")) {
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Triangle);
-            if (tower.Active())
-            {
-                Explosion(tower);
+            if (tower != null) {
+                if (tower.Active()) {
+                    Explosion(tower);
+                } else {
+                    isButtonDown = true;
+                }
+            } else {
+                //TODO Enter combo breaker
+                currentTower.GetComponent<SpriteRenderer>().color = Color.green;
+                currentTower = towerBase;
             }
-            else
-            {
-                isButtonDown = true;
-            }
+            
         }
 
         if (Input.GetButtonUp("X") || Input.GetButtonUp("Circle") || Input.GetButtonUp("Square") || Input.GetButtonUp("Triangle"))
