@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour {
     
 
     private List<TowerBase> towers;
-    private Vector3 closestTower;
+    private TowerBase closestTower;
     private Vector3 currentPosition;
     private float offset;
 	// Use this for initialization
@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Explosion")) {
+            closestTower.Shoot(this.gameObject);
             Explode();
             GameObject player = GameObject.Find("MainTower");
             Combo comboScript = player.GetComponent<Combo>();
@@ -47,12 +48,12 @@ public class Enemy : MonoBehaviour {
         currentPosition = this.transform.position;
         closestTower = GetClosestTower(currentPosition);
 
-        transform.position = Vector3.MoveTowards(currentPosition, closestTower, Time.deltaTime*speed);
+        transform.position = Vector3.MoveTowards(currentPosition, closestTower.transform.position, Time.deltaTime*speed);
     }
 
-    private Vector3 GetClosestTower(Vector3 currentPos) {
+    private TowerBase GetClosestTower(Vector3 currentPos) {
         float minDist = Mathf.Infinity;
-        Vector3 tMin = new Vector3();
+        TowerBase tMin = null;
 
         foreach (TowerBase tower in towers) {
             if (!tower.Active()) continue;
@@ -60,11 +61,10 @@ public class Enemy : MonoBehaviour {
             float dist = Vector3.Distance(currentPos, tower.transform.position);
             if(dist < minDist)
             {
-                tMin = tower.transform.position;
+                tMin = tower;
                 minDist = dist;
             }
         }
-        //Debug.Log(tMin);
         return tMin;
     }
     void Explode()
