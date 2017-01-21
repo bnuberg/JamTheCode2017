@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour {
     
     private Rigidbody2D rigidBody;
     private float speed;
-  
+    
 
     private List<TowerBase> towers;
     private Vector2 closestTower;
@@ -36,6 +36,10 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Explosion")) {
+            GameObject player = GameObject.Find("MainTower");
+            Combo comboScript = player.GetComponent<Combo>();
+            comboScript.EnemyDied();
+
             Destroy(this.gameObject);
         }
     }

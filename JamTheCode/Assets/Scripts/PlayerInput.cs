@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour {
 
     public TowerBase currentTower;
     private TowerBase tower = null;
-
+    public int success = 0;
     bool isButtonDown = false;
     private float timer;
     [SerializeField]
@@ -21,14 +21,15 @@ public class PlayerInput : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
        InputHandler();
+        
 
     }
 
-    private void InputHandler() {
+    protected void InputHandler() {
         if (!currentTower.Active()) {
             currentTower = towerBase;
         }
-
+        
         bool hasActiveChild = false;
         for (int i = 0; i < currentTower.children.Length; i++)
         {
@@ -50,8 +51,11 @@ public class PlayerInput : MonoBehaviour {
             if (tower != null) {
                 if (tower.Active()) {
                     Explosion(tower);
+                    success = 1;
+                    Debug.Log(success);
                 }
             } else {
+                success = -1;
                 //TODO Enter combo breaker
                 //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
                 //currentTower = towerBase;
@@ -61,8 +65,10 @@ public class PlayerInput : MonoBehaviour {
             if (tower != null) {
                 if (tower.Active()) {
                     Explosion(tower);
+                    success = 1;
                 }
             } else {
+                success = -1;
                 //TODO Enter combo breaker
                 //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
                 //currentTower = towerBase;
@@ -73,8 +79,10 @@ public class PlayerInput : MonoBehaviour {
             if (tower != null) {
                 if (tower.Active()) {
                     Explosion(tower);
+                    success = 1;
                 }
             } else {
+                success = -1;
                 //TODO Enter combo breaker
                 //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
                 //currentTower = towerBase;
@@ -85,8 +93,10 @@ public class PlayerInput : MonoBehaviour {
             if (tower != null) {
                 if (tower.Active()) {
                     Explosion(tower);
+                    success = 1;
                 }
             } else {
+                success = -1;
                 //TODO Enter combo breaker
                 //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
                 //currentTower = towerBase;
