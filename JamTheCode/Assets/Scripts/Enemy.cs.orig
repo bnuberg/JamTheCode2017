@@ -34,11 +34,15 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Explosion")) {
+<<<<<<< HEAD
             Explode();
+=======
             GameObject player = GameObject.Find("MainTower");
             Combo comboScript = player.GetComponent<Combo>();
             comboScript.EnemyDied();
 
+            Destroy(this.gameObject);
+>>>>>>> ComboBreaker
         }
     }
 	
