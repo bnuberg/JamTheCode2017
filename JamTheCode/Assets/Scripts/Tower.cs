@@ -7,7 +7,7 @@ public class Tower : TowerBase {
 	private ActivateKeys activationKey;
     [SerializeField]
     public Text inputText;
-
+    
     // Use this for initialization
 
     protected override void Start() {
@@ -20,7 +20,8 @@ public class Tower : TowerBase {
         }
 
         InputToColor(GetActivationKey());
-        inputText.text = "";
+        InputToString(GetActivationKey());
+        //inputText.text = "";
     }
 	
 	// Update is called once per frame
@@ -28,32 +29,33 @@ public class Tower : TowerBase {
         
 	}
 
-    private void InputToColor(ActivateKeys key)
-    {
-        string inputText = "";
+    //override public void InputToColor(ActivateKeys key)
+    //{
+    //    string inputText = "";
 
-        switch (key)
-        {
-            //A-button
-            case ActivateKeys.X:
-                GetComponent<SpriteRenderer>().color = Color.green;
-                break;
-            //B-button
-            case ActivateKeys.Circle:
-                GetComponent<SpriteRenderer>().color = Color.red;
-                break;
-            //X-Button
-            case ActivateKeys.Square:
-                GetComponent<SpriteRenderer>().color = Color.blue;
-                break;
-            //Y-button
-            case ActivateKeys.Triangle:
-                GetComponent<SpriteRenderer>().color = Color.yellow;
-                break;
-            default:
-                break;
-        }
-    }
+    //    switch (key)
+    //    {
+    //        //A-button
+    //        case ActivateKeys.X:
+    //            GetComponent<SpriteRenderer>().color = Color.green;
+    //            break;
+    //        //B-button
+    //        case ActivateKeys.Circle:
+    //            GetComponent<SpriteRenderer>().color = Color.red;
+    //            break;
+    //        //X-Button
+    //        case ActivateKeys.Square:
+    //            GetComponent<SpriteRenderer>().color = Color.blue;
+    //            break;
+    //        //Y-button
+    //        case ActivateKeys.Triangle:
+    //            GetComponent<SpriteRenderer>().color = Color.yellow;
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
+
     public string InputToString(ActivateKeys key)
     {
         string inputText = "";
@@ -74,9 +76,10 @@ public class Tower : TowerBase {
                 break;
             //Y-button
             case ActivateKeys.Triangle:
-                inputText = "w";
+                inputText = "W";
                 break;
             default:
+                inputText = "N";
                 break;
         }
         return inputText;
@@ -88,6 +91,7 @@ public class Tower : TowerBase {
 
     public override void Die() {
         base.Die();
+        panel.gameObject.SetActive(false);
     }
 
 	public ActivateKeys GetActivationKey() {

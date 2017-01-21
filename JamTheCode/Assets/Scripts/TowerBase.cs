@@ -23,6 +23,8 @@ public class TowerBase : MonoBehaviour {
     private GameObject fireSpawn;
     [SerializeField]
     private GameObject magicBall;
+    [SerializeField]
+    public GameObject panel;
     public enum ActivateKeys
     {
         X = 0,
@@ -111,6 +113,32 @@ public class TowerBase : MonoBehaviour {
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
+    virtual public void InputToColor(ActivateKeys key)
+    {
+        string inputText = "";
+
+        switch (key)
+        {
+            //A-button
+            case ActivateKeys.X:
+                panel.GetComponent<Image>().color = Color.green;
+                break;
+            //B-button
+            case ActivateKeys.Circle:
+                panel.GetComponent<Image>().color = Color.red;
+                break;
+            //X-Button
+            case ActivateKeys.Square:
+                panel.GetComponent<Image>().color = Color.blue;
+                break;
+            //Y-button
+            case ActivateKeys.Triangle:
+                panel.GetComponent<Image>().color = Color.yellow;
+                break;
+            default:
+                break;
+        }
+    }
     virtual public void Die() {
         if (!isActive) return;
 
