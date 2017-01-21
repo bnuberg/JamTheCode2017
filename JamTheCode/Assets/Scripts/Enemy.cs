@@ -35,7 +35,6 @@ public class Enemy : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Explosion")) {
             closestTower.Shoot(this.gameObject);
-            Debug.Log("Shoot enemy");
         }
     }
 	
@@ -49,7 +48,7 @@ public class Enemy : MonoBehaviour {
 
     private TowerBase GetClosestTower(Vector3 currentPos) {
         float minDist = Mathf.Infinity;
-        TowerBase tMin = new TowerBase();
+        TowerBase tMin = null;
 
         foreach (TowerBase tower in towers) {
             if (!tower.Active()) continue;

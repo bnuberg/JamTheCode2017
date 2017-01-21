@@ -52,9 +52,6 @@ public class TowerBase : MonoBehaviour {
 
     public void Shoot(GameObject enemy)
     {
-
-        Debug.Log(fireSpawn.transform.position);
-
         GameObject newMagicBall = Instantiate(magicBall);
         newMagicBall.transform.position = fireSpawn.transform.position;
         newMagicBall.GetComponent<MagicBallController>().SetTarget(enemy);
