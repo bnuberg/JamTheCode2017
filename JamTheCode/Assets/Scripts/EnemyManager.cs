@@ -27,10 +27,10 @@ public class EnemyManager : MonoBehaviour
     {
         mainTower = GameObject.Find("MainTower");
 
-        interval = 5f;
+        interval = 0.000001f;
         spawnPositions = new List<Vector3>();
         waveCount = 0;
-        waveEnemyAmount = 15;
+        waveEnemyAmount = 10000;
         StartCoroutine(EnemySpawner());
     }
 
@@ -42,8 +42,6 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator EnemySpawner()
     {
-
-
         UpdateWaveCount();
         yield return new WaitForSeconds(1f);
         UpdateWaveMiddle();
@@ -52,10 +50,11 @@ public class EnemyManager : MonoBehaviour
             
             yield return new WaitForSeconds(1.5f);
             waveCountMessage.text = "";
+            Debug.Log(interval);
             for (int i = 0; i < waveEnemyAmount; i++)
             {
                 SpawnEnemy();
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(interval);
             }
 
             waveEnemyAmount *= 2;
@@ -66,12 +65,11 @@ public class EnemyManager : MonoBehaviour
             Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
             Instantiate(enemy, randomPosition, Quaternion.identity);
         }
-
     }
 
     private void UpdateWaveCount()
     {
-        mainTower.GetComponent<TowerBase>().activateAllChildren();
+        //mainTower.GetComponent<TowerBase>().activateAllChildren();
         waveCount++;
         waveCountText.text = "Wave: " + waveCount;
     }

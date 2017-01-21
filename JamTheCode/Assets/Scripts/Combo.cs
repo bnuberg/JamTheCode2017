@@ -35,7 +35,6 @@ public class Combo : MonoBehaviour {
 
             comboTimerMax = comboTimer; 
             comboChain+= addCombo;
-            Debug.Log(comboChain);
             playerInput.success = 0;
         }
         else if( playerInput.success == 0)

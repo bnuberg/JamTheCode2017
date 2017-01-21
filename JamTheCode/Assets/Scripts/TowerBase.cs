@@ -60,8 +60,12 @@ public class TowerBase : MonoBehaviour {
                 //Vector3 newPos = (transform.position + children[i].transform.position) / 2;
                 GameObject conn = Instantiate(this.connector, transform.position, Quaternion.identity);
                 conn.transform.LookAt(children[i].transform);
-                conn.transform.Translate(Vector3.forward * 2, conn.transform);
-                conn.transform.localScale = new Vector3(0.1f, 0.2f, 4f);
+
+                float dist = Vector3.Distance(children[i].transform.position, transform.position);
+                float myLength = transform.localScale.z;
+
+                conn.transform.Translate(Vector3.forward * dist / 2, conn.transform);
+                conn.transform.localScale = new Vector3(0.1f, 0.2f, dist * 0.95f);
 
                 //if (children[i].children.Length > 0) {
                 children[i].BuildConnections();
