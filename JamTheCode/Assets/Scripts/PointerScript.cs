@@ -18,6 +18,6 @@ public class PointerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 		currentTower = mainTower.GetComponent<PlayerInput>().currentTower;
-        transform.position = Vector2.MoveTowards(transform.position, currentTower.transform.position, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, currentTower.transform.position, Time.deltaTime * speed);
     }
 }
