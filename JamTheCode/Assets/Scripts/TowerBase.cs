@@ -29,6 +29,8 @@ public class TowerBase : MonoBehaviour {
 
     [SerializeField] private GameObject connector;
     [SerializeField] private bool buildConnections;
+    [SerializeField] private Death death;
+
     public enum ActivateKeys
     {
         X = 0,
@@ -74,6 +76,7 @@ public class TowerBase : MonoBehaviour {
 	void Update () {
 
     }
+    
 
     protected virtual void RandomizeActivationKeys()
     {
@@ -143,9 +146,14 @@ public class TowerBase : MonoBehaviour {
     
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Enemy")) {
+            if (gameObject.name == "MainTower") {
+                death.StartExplosion();
+            }
             Die();
             other.GetComponent<Enemy>().Explode();
         }
+
+        
     }
     
     public void Explosion() {
