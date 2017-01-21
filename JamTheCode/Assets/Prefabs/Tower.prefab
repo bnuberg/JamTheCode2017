@@ -599,7 +599,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668338025870754}
   m_LocalRotation: {x: -0.5010712, y: 0.49892655, z: 0.49892655, w: 0.5010712}
-  m_LocalPosition: {x: 0.12114163, y: -0.2861859, z: -0.01755742}
+  m_LocalPosition: {x: 0.12114163, y: -0.356, z: -0.018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4320620921894204}
@@ -670,7 +670,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1495162916811536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.07, y: -0.17, z: -0}
+  m_LocalPosition: {x: 17.972256, y: -3.1666985, z: -45.748898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4135197409347702}
@@ -1795,7 +1795,7 @@ MonoBehaviour:
   magicBall: {fileID: 1323273494179182, guid: f027449978407c849be51babbd00211e, type: 2}
   connector: {fileID: 1479019689216520, guid: 51a97d6a43b4ad84995cad3c82507c19, type: 2}
   buildConnections: 1
-  activationKey: 1
+  death: {fileID: 0}
   inputText: {fileID: 114569213952335774}
 --- !u!114 &114508518756545588
 MonoBehaviour:

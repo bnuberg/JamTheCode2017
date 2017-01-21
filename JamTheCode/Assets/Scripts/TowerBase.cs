@@ -149,8 +149,10 @@ public class TowerBase : MonoBehaviour {
             if (gameObject.name == "MainTower") {
                 death.StartExplosion();
             }
+
+            if (isActive) other.GetComponent<Enemy>().Explode();
+
             Die();
-            other.GetComponent<Enemy>().Explode();
         }
 
         
