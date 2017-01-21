@@ -33,7 +33,7 @@ public class TowerBase : MonoBehaviour {
         mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
 
         animations = gameObject.GetComponentInChildren<Animation>();
-        //ashes =
+        ashes = animations.gameObject.transform.GetChild(1).gameObject;
 
         //animations = GameObject.Find("TowerV1").GetComponent<Animation>();
 
@@ -106,6 +106,8 @@ public class TowerBase : MonoBehaviour {
 
         //TODO REMOVE WHEN MAIN TOWER HAS MODEL
         if (gameObject.name != "MainTower") {
+            ashes.SetActive(true);
+            //ashes.transform.Rotate(Vector3.forward, Random.value * 360);
             animations.Play("Destruction");
         }
         isActive = false;

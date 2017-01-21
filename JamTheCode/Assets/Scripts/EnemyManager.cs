@@ -27,7 +27,7 @@ public class EnemyManager : MonoBehaviour
     {
         mainTower = GameObject.Find("MainTower");
 
-        interval = 2f;
+        interval = 5f;
         spawnPositions = new List<Vector3>();
         waveCount = 0;
         waveEnemyAmount = 15;
@@ -83,7 +83,7 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Vector2 randomPosition = RandomCircle(this.transform.position, spawnDistance);
+        Vector3 randomPosition = RandomCircle(this.transform.position, spawnDistance);
         Instantiate(enemy, randomPosition, Quaternion.identity);
     }
     private Vector3 RandomCircle(Vector3 center, float radius)
@@ -95,6 +95,7 @@ public class EnemyManager : MonoBehaviour
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.y = center.y;
         pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        
         //pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         //pos.z = center.z;
 
