@@ -58,7 +58,7 @@ public class TowerBase : MonoBehaviour {
     }
     public void TextActivator(Tower[] children)
     {
-        
+        Debug.Log("Tower Text Activator");
         foreach (Tower child in children)
         {
             if (child.isActive)
@@ -66,12 +66,12 @@ public class TowerBase : MonoBehaviour {
                 child.inputText = child.GetComponentInChildren<Text>();
                 child.inputText.text = child.InputToString(child.GetActivationKey());
             }
-     
         }
     }
 
     virtual public void ResetTextTowers()
     {
+        Debug.Log("Tower Text Reset");
         foreach (Tower tower in children)
         {
             tower.GetComponentInChildren<Text>().text = "";

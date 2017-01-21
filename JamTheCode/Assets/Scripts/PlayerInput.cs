@@ -72,10 +72,10 @@ public class PlayerInput : MonoBehaviour {
     {
         if (tower != null)
         {
-            mainTower.ResetTextTowers();
             tower.TextActivator(tower.children);
             if (tower.Active())
             {
+                mainTower.ResetTextTowers();
                 Explosion(tower);
             }
         }
@@ -84,7 +84,6 @@ public class PlayerInput : MonoBehaviour {
             //TODO Enter combo breaker
             //currentTower.GetComponent<SpriteRenderer>().color = Color.green;
             //currentTower = towerBase;
-            //yo man
         }
     }
 
