@@ -6,7 +6,7 @@ public class Tower : TowerBase {
     //[SerializeField]
 	private ActivateKeys activationKey;
     [SerializeField]
-    public Text inputText;
+    public Text InputText;
     [SerializeField]
     private GameObject freeze;
 
@@ -16,8 +16,9 @@ public class Tower : TowerBase {
 	    base.Start();
 
         InputToColor(GetActivationKey());
-        inputText.text = "";
-        
+        InputText.text = "";
+        InputText.transform.localScale = new Vector3(-InputText.transform.localScale.x, InputText.transform.localScale.y, InputText.transform.localScale.z);
+
     }
 	
 	// Update is called once per frame
@@ -39,6 +40,7 @@ public class Tower : TowerBase {
         {
             base.Explosion();
         }
+        InputText.text = "";
 
     }
     void FreezePower()
@@ -60,18 +62,22 @@ public class Tower : TowerBase {
         {
             //A-button
             case ActivateKeys.X:
+                InputText.color = Color.green;
                 GetComponent<SpriteRenderer>().color = Color.green;
                 break;
             //B-button
             case ActivateKeys.Circle:
+                InputText.color = Color.red;
                 GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             //X-Button
             case ActivateKeys.Square:
+                InputText.color = Color.blue;
                 GetComponent<SpriteRenderer>().color = Color.blue;
                 break;
             //Y-button
             case ActivateKeys.Triangle:
+                InputText.color = Color.yellow;
                 GetComponent<SpriteRenderer>().color = Color.yellow;
                 break;
             default:
@@ -112,17 +118,22 @@ public class Tower : TowerBase {
 
     public override void Die() {
         base.Die();
+        InputText.GetComponent<TextHighlight>().StopHighlight();
+
     }
 
-	public ActivateKeys GetActivationKey() {
+    public ActivateKeys GetActivationKey() {
 		return activationKey;
 	}
 
     public void SetActivationKey(ActivateKeys key)
     {
         activationKey = key;
+        InputToColor(key);
+        InputToString(key);
+
     }
-    
+
     public override void activateAllChildren()
     {
         base.activateAllChildren();

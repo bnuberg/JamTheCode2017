@@ -687,7 +687,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1495162916811536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.32878, y: -0.042342186, z: 0.24253988}
+  m_LocalPosition: {x: 6.5009046, y: -3.6672568, z: 5.9482646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4135197409347702}
@@ -1893,9 +1893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
   rotatingAround: {fileID: 1381088451425754}
-  growTo: 0
-  stayMini: 0
-  stayMax: 0
+  growTo: 2.5
 --- !u!114 &114932728735993812
 MonoBehaviour:
   m_ObjectHideFlags: 1

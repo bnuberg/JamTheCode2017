@@ -10,7 +10,7 @@ public class TowerBase : MonoBehaviour {
     public TowerBase parentTower;
     [SerializeField]
     public Tower[] children;
-    //private TowerBase mainTower;
+    private TowerBase mainTower;
     [SerializeField]
     private GameObject explosion;
 
@@ -48,7 +48,7 @@ public class TowerBase : MonoBehaviour {
     // Use this for initialization
     protected virtual void Start () {
         //GetComponent<SpriteRenderer>().color = Color.green;
-        //mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
+        mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
         
         RandomizeActivationKeys();
         explosionRange = maxExplosionRange;
@@ -59,7 +59,7 @@ public class TowerBase : MonoBehaviour {
         //animations = GameObject.Find("TowerV1").GetComponent<Animation>();
 
         if (!isActive) animations.Play("Destroyed");
-        TextActivator(parentTower.children);
+        TextActivator(mainTower.children);
         BuildConnections();
     }
 
@@ -112,9 +112,9 @@ public class TowerBase : MonoBehaviour {
         newMagicBall.transform.position = fireSpawn.transform.position;
         newMagicBall.GetComponent<MagicBallController>().SetTarget(enemy);
     }
-    public void TextActivator(Tower[] childrenLIst)
+    public void TextActivator(Tower[] childrenList)
     {
-        foreach (Tower child in childrenLIst)
+        foreach (Tower child in childrenList)
         {
             if (child.isActive)
             {

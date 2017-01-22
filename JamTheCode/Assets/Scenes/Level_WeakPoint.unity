@@ -194,6 +194,36 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224683096835085956, guid: 867df9f77a904f24b9044bb3c8d2fe15,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224683096835085956, guid: 867df9f77a904f24b9044bb3c8d2fe15,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224274298401156498, guid: 867df9f77a904f24b9044bb3c8d2fe15,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224274298401156498, guid: 867df9f77a904f24b9044bb3c8d2fe15,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224274298401156498, guid: 867df9f77a904f24b9044bb3c8d2fe15,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 601.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 224274298401156498, guid: 867df9f77a904f24b9044bb3c8d2fe15,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 867df9f77a904f24b9044bb3c8d2fe15, type: 2}
   m_IsPrefabParent: 0
@@ -1188,13 +1218,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1526282198}
-  m_LocalRotation: {x: 0.0056773173, y: 0.8996416, z: -0.43643543, w: 0.011703238}
-  m_LocalPosition: {x: -0.11, y: 14.34, z: 12.49}
+  m_LocalRotation: {x: -0.42098826, y: -0.0030026562, z: -0.012659919, w: -0.9069728}
+  m_LocalPosition: {x: -0.11, y: 15.1, z: -15.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 128.242, y: 358.509, z: 180}
+  m_LocalEulerAnglesHint: {x: 130.22, y: 181.429, z: -177.737}
 --- !u!114 &1567731042 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114320410751098026, guid: d932e08c4820a2e45b46094bf936b58a,

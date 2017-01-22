@@ -14,6 +14,7 @@ public class TextHighlight : MonoBehaviour {
 
     void Start() {
         currentlyHighlighting = false;
+        camera = GameObject.Find("Camera").GetComponent<Camera>();
 
         baseDistance = 10;
     }
@@ -37,13 +38,13 @@ public class TextHighlight : MonoBehaviour {
             float distance = Vector3.Distance(rotatingAround.transform.position, camera.transform.position);
 
             float ratio = (distance / baseDistance) / 2;
-            scale *= ratio;
+            //scale *= ratio;
 
 
             //if (scale.x <= growTo) {    
             //    scale.x = scale.y = scale.z += Mathf.Lerp(scale.x, growTo, 25);
             //}
-            Debug.Log(scale.x);
+            //Debug.Log(scale.x);
 
             rotatingAround.transform.localScale = Vector3.Lerp(rotatingAround.transform.localScale, scale, Time.deltaTime*5 );
         }
