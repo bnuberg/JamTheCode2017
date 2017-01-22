@@ -10,10 +10,10 @@ public class PlayerInput : MonoBehaviour {
     private TowerBase tower = null;
     private TowerBase mainTower;
     public int success = 0;
-    bool isButtonDown = false;
+    //bool isButtonDown = false;
     private float timer;
-    [SerializeField]
-    private float activationTime = 1f;
+    //[SerializeField]
+    //private float activationTime = 1f;
 
     private TutorialManager tutorialManager;
     // Use this for initialization

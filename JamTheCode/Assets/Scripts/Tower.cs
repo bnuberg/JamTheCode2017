@@ -6,7 +6,7 @@ public class Tower : TowerBase {
     //[SerializeField]
 	private ActivateKeys activationKey;
     [SerializeField]
-    public Text InputText;
+    public Text inputText;
     [SerializeField]
     private GameObject freeze;
 
@@ -15,10 +15,8 @@ public class Tower : TowerBase {
     protected override void Start() {
 	    base.Start();
 
-        //InputToColor(GetActivationKey());
-        InputText.text = "";
-        InputText.transform.localScale = new Vector3(-InputText.transform.localScale.x, InputText.transform.localScale.y, InputText.transform.localScale.z);
-        
+        InputToColor(GetActivationKey());
+        inputText.text = "";
         
     }
 	
@@ -26,55 +24,54 @@ public class Tower : TowerBase {
 	void Update () {
         if (explosionRange < maxExplosionRange)
         {
-            //Debug.Log("Increase Range");
-            explosionRange += 0.01f;
+            explosionRange += 0.003f;
         }
         if (explosionRange > maxExplosionRange) explosionRange = maxExplosionRange;
     }
     public override void Explosion()
     {
-        if (Input.GetButton("Power")){
+        if (Input.GetButton("Power"))
+        {
             FreezePower();
-            
-        } else {
+            Debug.Log("Poweeeeeeeeeeeeeeeeeeeeeeeeeeeer");
+        }
+        else
+        {
             base.Explosion();
         }
 
-        InputText.text = "";
-        //act
     }
     void FreezePower()
     {
         
         GameObject go = Instantiate(freeze, transform);
+
+        go.GetComponent<Explosion>().SetSizeMultiplier(explosionRange);
+        explosionRange -= explosionRangeDecrease;
+        if (explosionRange < 0) explosionRange = 0;
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
 
     private void InputToColor(ActivateKeys key)
     {
-        string inputText = "";
 
         switch (key)
         {
             //A-button
             case ActivateKeys.X:
-                InputText.color = Color.green;
                 GetComponent<SpriteRenderer>().color = Color.green;
                 break;
             //B-button
             case ActivateKeys.Circle:
-                InputText.color = Color.red;
                 GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             //X-Button
             case ActivateKeys.Square:
-                InputText.color = Color.blue;
                 GetComponent<SpriteRenderer>().color = Color.blue;
                 break;
             //Y-button
             case ActivateKeys.Triangle:
-                InputText.color = Color.yellow;
                 GetComponent<SpriteRenderer>().color = Color.yellow;
                 break;
             default:
@@ -106,8 +103,6 @@ public class Tower : TowerBase {
             default:
                 break;
         }
-
-        
         return inputText;
     }
     void OnMouseDown() {
@@ -117,17 +112,15 @@ public class Tower : TowerBase {
 
     public override void Die() {
         base.Die();
-        InputText.GetComponent<TextHighlight>().StopHighlight();
     }
 
 	public ActivateKeys GetActivationKey() {
 		return activationKey;
 	}
 
-    public void SetActivationKey(ActivateKeys key) {
+    public void SetActivationKey(ActivateKeys key)
+    {
         activationKey = key;
-        InputToColor(key);
-        InputToString(key);
     }
     
     public override void activateAllChildren()

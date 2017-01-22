@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,11 +12,12 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private GameObject enemy;
     [SerializeField]
-    private float interval;
+    public float interval;
+    public event Action OnLevelComplete;
 
     public float spawnDistance;
-
     private int waveCount;
+
     [SerializeField]
     private int waveEnemyAmount;
     [SerializeField]
@@ -23,11 +25,11 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private Text waveCountMessage;
 
-    private List<Vector3> spawnPositions;
+    //private List<Vector3> spawnPositions;
 
     private bool isTutorial;
     private TutorialManager tutorialManager;
-    
+
 
     // Use this for initialization
     void Start()
@@ -35,17 +37,15 @@ public class EnemyManager : MonoBehaviour
         mainTower = GameObject.Find("MainTower");
 
         interval = 1f;
-        spawnPositions = new List<Vector3>();
+        //spawnPositions = new List<Vector3>();
         waveCount = 0;
         waveEnemyAmount = 30;
-
-        
 
         if (SceneManager.GetActiveScene().name == "_Tutorial" || SceneManager.GetActiveScene().name == "_Tutorial_part2")
         {
             tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
             isTutorial = true;
-            
+
         }
         else
         {
@@ -60,17 +60,34 @@ public class EnemyManager : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        this.OnLevelComplete += LoadNextLevel;
+    }
+
+    void OnDisable()
+    {
+        this.OnLevelComplete -= LoadNextLevel;
+    }
+
+
+    void LoadNextLevel()
+    {
+        StartCoroutine(LoadLevel());
+    }
+
     IEnumerator EnemySpawner()
     {
         if (!isTutorial)
         {
-            #region NON-TUTORIAL REGION
+
             UpdateWaveCount();
             yield return new WaitForSeconds(1f);
             UpdateWaveMiddle();
-            while (true)
+
+            yield return new WaitForSeconds(1.5f);
+            while (waveCount < 4)
             {
-                yield return new WaitForSeconds(1.5f);
                 waveCountMessage.text = "";
                 Debug.Log(interval);
                 for (int i = 0; i < waveEnemyAmount; i++)
@@ -79,29 +96,59 @@ public class EnemyManager : MonoBehaviour
                     yield return new WaitForSeconds(interval);
                 }
 
-                waveEnemyAmount *= 2;
-                yield return new WaitForSeconds(15f);
-                UpdateWaveCount();
-                UpdateWaveMiddle();
+                while (AreEnemiesLeft())
+                {
+                    yield return new WaitForSeconds(1f);
+                }
 
-                Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
-                Instantiate(enemy, randomPosition, Quaternion.identity);
-                #endregion
+                if (waveCount < 3)
+                {
+                    yield return new WaitForSeconds(4f);
+                    NextWave();
+                    yield return new WaitForSeconds(6f);
+                }
+                else
+                {
+                    waveCount++;
+                }
+
+                //Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
+                //Instantiate(enemy, randomPosition, Quaternion.identity);
+            }
+
+            if (OnLevelComplete != null)
+            {
+                OnLevelComplete();
             }
         }
-        else
-        {
+    }
 
-            //SpawnTutorialWave();
-            //waveDone = true;
-            
-        }
+
+    private bool AreEnemiesLeft()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        Debug.Log(enemies.Length);
+
+        if (enemies.Length == 0)
+            return false;
+        else
+            return true;
+        ;
+    }
+
+    private void NextWave()
+    {
+        waveEnemyAmount += 20;
+        interval *= 0.9f;
+        UpdateWaveCount();
+        UpdateWaveMiddle();
 
     }
 
     private void UpdateWaveCount()
     {
-        //mainTower.GetComponent<TowerBase>().activateAllChildren();
+        mainTower.GetComponent<TowerBase>().activateAllChildren();
         waveCount++;
         waveCountText.text = "Wave: " + waveCount;
     }
@@ -111,7 +158,7 @@ public class EnemyManager : MonoBehaviour
         waveCountMessage.text = "Wave: " + waveCount;
     }
 
-    private void SpawnEnemy()
+    public void SpawnEnemy()
     {
         Vector3 randomPosition = RandomCircle(this.transform.position, spawnDistance);
         Instantiate(enemy, randomPosition, Quaternion.identity);
@@ -125,10 +172,11 @@ public class EnemyManager : MonoBehaviour
 
         int tutorialEnemyAmount = 0;
 
-        if(SceneManager.GetActiveScene().name == "_Tutorial")
+        if (SceneManager.GetActiveScene().name == "_Tutorial")
         {
             tutorialEnemyAmount = 10;
-        } else
+        }
+        else
         {
             tutorialEnemyAmount = 20;
         }
@@ -144,16 +192,26 @@ public class EnemyManager : MonoBehaviour
     {
 
         // create random angle between 0 to 360 degrees
-        float ang = Random.value * 360;
+        float ang = UnityEngine.Random.value * 360;
         Vector3 pos;
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.y = center.y;
         pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
 
-        //pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
-        //pos.z = center.z;
-
         return pos;
     }
-  
+
+    IEnumerator LoadLevel()
+    {
+        Text tutorialText = GameObject.Find("TutorialCanvas").GetComponentInChildren<Text>();
+        yield return new WaitForSeconds(1f);
+        tutorialText.text = "Wave complete!";
+        yield return new WaitForSeconds(1f);
+        tutorialText.text = "";
+        tutorialText.text = "Loading new level...";
+        yield return new WaitForSeconds(4f);
+        int i = Application.loadedLevel;
+        Application.LoadLevel(i + 1);
+
+    }
 }
