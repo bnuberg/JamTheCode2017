@@ -181,8 +181,8 @@ public class TowerBase : MonoBehaviour {
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
         //Selection Ring
-        GameObject select = Instantiate(selectObject, transform);
-        select.transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+        //GameObject select = Instantiate(selectObject, transform);
+        //select.transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
         //select.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f;
 
     }

@@ -1068,6 +1068,18 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8af3c5a22dec1814caca18ad08286d86, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1108803703 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114893690469164898, guid: 8af3c5a22dec1814caca18ad08286d86,
+    type: 2}
+  m_PrefabInternal: {fileID: 1108803702}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1108803704 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114643150375251462, guid: 8af3c5a22dec1814caca18ad08286d86,
+    type: 2}
+  m_PrefabInternal: {fileID: 1108803702}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1174908658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,6 +1874,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114766202402635924, guid: 3a5ecf3f0dee95a418a1661d68c5fd38,
+        type: 2}
+      propertyPath: children.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4526642121822194, guid: 3a5ecf3f0dee95a418a1661d68c5fd38, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1898,12 +1915,12 @@ Prefab:
         type: 2}
       propertyPath: waveCountText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1108803703}
     - target: {fileID: 114800088728507804, guid: 3a5ecf3f0dee95a418a1661d68c5fd38,
         type: 2}
       propertyPath: waveCountMessage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1108803704}
     - target: {fileID: 114766202402635924, guid: 3a5ecf3f0dee95a418a1661d68c5fd38,
         type: 2}
       propertyPath: children.Array.data[0]
@@ -1923,7 +1940,7 @@ Prefab:
         type: 2}
       propertyPath: children.Array.data[3]
       value: 
-      objectReference: {fileID: 153970456}
+      objectReference: {fileID: 973455049}
     - target: {fileID: 114781704851034796, guid: 3a5ecf3f0dee95a418a1661d68c5fd38,
         type: 2}
       propertyPath: comboTimer

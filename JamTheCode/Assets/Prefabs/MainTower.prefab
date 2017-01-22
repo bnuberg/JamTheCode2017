@@ -89963,8 +89963,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
+  selectObject: {fileID: 0}
   maxExplosionRange: 2
   explosionRangeDecrease: 0.5
   animations: {fileID: 111800594385638808}
@@ -89986,7 +89986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboChain: 0
-  comboTimer: 10
+  comboTimer: 3
   comboTimerMax: 0
   highestCombo: 0
   addCombo: 1

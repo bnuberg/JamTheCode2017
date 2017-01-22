@@ -109,19 +109,23 @@ public class Tower : TowerBase {
         {
             //A-button
             case ActivateKeys.X:
-                inputText = "S";
+                //inputText = "S";
+                inputText = "A";
                 break;
             //B-button
             case ActivateKeys.Circle:
-                inputText = "D";
+                //inputText = "D";
+                inputText = "B";
                 break;
             //X-Button
             case ActivateKeys.Square:
-                inputText = "A";
+                //inputText = "A";
+                inputText = "X";
                 break;
             //Y-button
             case ActivateKeys.Triangle:
-                inputText = "w";
+                //inputText = "w";
+                inputText = "Y";
                 break;
             default:
                 break;

@@ -7,7 +7,7 @@ public class Combo : MonoBehaviour {
 
 
     [SerializeField]
-    public float comboTimer = 10;
+    public float comboTimer = 3;
     public float comboTimerMax;
     public int highestCombo;
     [SerializeField]
