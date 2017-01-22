@@ -687,8 +687,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1495162916811536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.5009046, y: -3.6672568, z: 5.9482646}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.12, y: 6.22, z: 0}
+  m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
   m_Children:
   - {fileID: 4135197409347702}
   - {fileID: 4206421415295506}
@@ -1820,6 +1820,8 @@ MonoBehaviour:
   parentTower: {fileID: 0}
   children: []
   explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
+  selectObject: {fileID: 1965658255891770, guid: 6bef5ec04fb793346ae68bd68229fec0,
+    type: 2}
   maxExplosionRange: 2
   explosionRangeDecrease: 0.5
   animations: {fileID: 0}
