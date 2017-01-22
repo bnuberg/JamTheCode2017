@@ -17,10 +17,10 @@ public class PlayerInput : MonoBehaviour {
 
     private TutorialManager tutorialManager;
     // Use this for initialization
-    void Start () {
+    void Start() {
         ChangeCurrenTower(towerBase);
-        mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
-        mainTower.TextActivator(mainTower.children);
+        towerBase = GameObject.Find("MainTower").GetComponent<TowerBase>();
+        towerBase.TextActivator(towerBase.children);
         if(SceneManager.GetActiveScene().name == "_Tutorial")
         {
             tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
@@ -97,7 +97,7 @@ public class PlayerInput : MonoBehaviour {
             tower.TextActivator(tower.children);
             if (tower.Active())
             {
-                mainTower.ResetTextTowers();
+                towerBase.ResetTextTowers();
                 Explosion(tower);
                 success = 1;
             }
