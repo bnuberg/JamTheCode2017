@@ -7,14 +7,18 @@ public class Enemy : MonoBehaviour {
     
     private Rigidbody2D rigidBody;
     private float speed;
-    
-
+    [SerializeField]
+    private float freezeMultiplier;
+    private bool isSlowed = false;
     private List<TowerBase> towers;
     private TowerBase closestTower;
     private Vector3 currentPosition;
     private float offset;
-	// Use this for initialization
-	void Start () {
+
+    [SerializeField]
+    float freezeTime;
+    // Use this for initialization
+    void Start () {
         //rigidBody = this.GetComponent<Rigidbody2D>();
         speed = 0.5f;
         offset = 0.1f;
@@ -39,13 +43,26 @@ public class Enemy : MonoBehaviour {
             Combo comboScript = player.GetComponent<Combo>();
             comboScript.EnemyDied();
             Explode();
-            
+        }
+        else if (other.CompareTag("Freeze"))
+        {
+            Freeze();
+        }
 
+    }
+    void Freeze()
+    {
+        
+        if (isSlowed == false)
+        {
+            speed *= freezeMultiplier;
+            isSlowed = true;
+            
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         currentPosition = this.transform.position;
         if (closestTower == null || !closestTower.Active())
         {
@@ -56,6 +73,19 @@ public class Enemy : MonoBehaviour {
         {
             transform.position = Vector3.MoveTowards(currentPosition, closestTower.transform.position, Time.deltaTime * speed);
             transform.LookAt(closestTower.transform);
+       
+        if (isSlowed && freezeTime > 0)
+        {
+            freezeTime -= Time.deltaTime;
+            
+        }
+        else if (freezeTime <= 0)
+        {
+            freezeTime = 2;
+            isSlowed = false;
+            speed = 0.5f;
+            
+        }
         }
     }
 

@@ -7,6 +7,8 @@ public class Tower : TowerBase {
 	private ActivateKeys activationKey;
     [SerializeField]
     public Text inputText;
+    [SerializeField]
+    private GameObject freeze;
 
     // Use this for initialization
 
@@ -20,8 +22,33 @@ public class Tower : TowerBase {
 	
 	// Update is called once per frame
 	void Update () {
+        if (explosionRange < maxExplosionRange)
+        {
+            Debug.Log("Increase Range");
+            explosionRange += 0.01f;
+        }
+        if (explosionRange > maxExplosionRange) explosionRange = maxExplosionRange;
+    }
+    public override void Explosion()
+    {
+        if (Input.GetButton("Power"))
+        {
+            FreezePower();
+            Debug.Log("Poweeeeeeeeeeeeeeeeeeeeeeeeeeeer");
+        }
+        else
+        {
+            base.Explosion();
+        }
+
+    }
+    void FreezePower()
+    {
         
-	}
+        GameObject go = Instantiate(freeze, transform);
+        go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
+
 
     private void InputToColor(ActivateKeys key)
     {
