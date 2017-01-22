@@ -9,7 +9,11 @@ public class Tower : TowerBase {
     public Text InputText;
     [SerializeField]
     private GameObject freeze;
-
+    private GameObject rangeIndicator;
+    
+    private float scaleSpeed;
+    [SerializeField]
+    Vector3 startSize;
     // Use this for initialization
 
     protected override void Start() {
@@ -18,6 +22,9 @@ public class Tower : TowerBase {
         InputToColor(GetActivationKey());
         InputText.text = "";
         InputText.transform.localScale = new Vector3(-InputText.transform.localScale.x, InputText.transform.localScale.y, InputText.transform.localScale.z);
+        rangeIndicator = transform.Find("RangeIndicator").gameObject;
+        
+        rangeIndicator.transform.localScale = startSize;
     }
 	
 	// Update is called once per frame
@@ -25,8 +32,19 @@ public class Tower : TowerBase {
         if (explosionRange < maxExplosionRange)
         {
             explosionRange += 0.003f;
+            
         }
         if (explosionRange > maxExplosionRange) explosionRange = maxExplosionRange;
+        rangeIndicator.transform.localScale = startSize * explosionRange;
+        if (isActive)
+        {
+            rangeIndicator.SetActive(true);
+        }
+        else
+        {
+            rangeIndicator.SetActive(false);
+        }
+
     }
     public override void Explosion()
     {

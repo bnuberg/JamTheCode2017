@@ -9,58 +9,74 @@ public class Tower : TowerBase {
     public Text InputText;
     [SerializeField]
     private GameObject freeze;
-
+    private GameObject rangeIndicator;
+    
+    private float scaleSpeed;
+    [SerializeField]
+    Vector3 startSize;
     // Use this for initialization
 
     protected override void Start() {
 	    base.Start();
 
-        //InputToColor(GetActivationKey());
+        InputToColor(GetActivationKey());
         InputText.text = "";
         InputText.transform.localScale = new Vector3(-InputText.transform.localScale.x, InputText.transform.localScale.y, InputText.transform.localScale.z);
+<<<<<<< HEAD
+=======
+        rangeIndicator = transform.Find("RangeIndicator").gameObject;
         
-        
+        rangeIndicator.transform.localScale = startSize;
+>>>>>>> RangeIndicator
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (explosionRange < maxExplosionRange)
         {
-            //Debug.Log("Increase Range");
-            explosionRange += 0.01f;
+            explosionRange += 0.003f;
+            
         }
         if (explosionRange > maxExplosionRange) explosionRange = maxExplosionRange;
-    }
-    public override void Explosion()
-    {
-        if (Input.GetButton("Power")){
-            FreezePower();
-<<<<<<< HEAD
-            
+        rangeIndicator.transform.localScale = startSize * explosionRange;
+        if (isActive)
+        {
+            rangeIndicator.SetActive(true);
         }
         else
         {
-=======
-            Debug.Log("Poweeeeeeeeeeeeeeeeeeeeeeeeeeeer");
-        } else {
->>>>>>> origin/VisualFeedbackBranch
-            base.Explosion();
+            rangeIndicator.SetActive(false);
         }
 
+    }
+    public override void Explosion()
+    {
+        if (Input.GetButton("Power"))
+        {
+            FreezePower();
+            Debug.Log("Poweeeeeeeeeeeeeeeeeeeeeeeeeeeer");
+        }
+        else
+        {
+            base.Explosion();
+        }
         InputText.text = "";
-        //act
+
     }
     void FreezePower()
     {
-        
+        SoundManager.Instance.PlayFreeze();
         GameObject go = Instantiate(freeze, transform);
+
+        go.GetComponent<Explosion>().SetSizeMultiplier(explosionRange);
+        explosionRange -= explosionRangeDecrease;
+        if (explosionRange < 0) explosionRange = 0;
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
 
     private void InputToColor(ActivateKeys key)
     {
-        string inputText = "";
 
         switch (key)
         {
@@ -113,8 +129,6 @@ public class Tower : TowerBase {
             default:
                 break;
         }
-
-        
         return inputText;
     }
     void OnMouseDown() {
@@ -127,16 +141,18 @@ public class Tower : TowerBase {
         InputText.GetComponent<TextHighlight>().StopHighlight();
     }
 
-	public ActivateKeys GetActivationKey() {
+    public ActivateKeys GetActivationKey() {
 		return activationKey;
 	}
 
-    public void SetActivationKey(ActivateKeys key) {
+    public void SetActivationKey(ActivateKeys key)
+    {
         activationKey = key;
         InputToColor(key);
         InputToString(key);
+
     }
-    
+
     public override void activateAllChildren()
     {
         base.activateAllChildren();
