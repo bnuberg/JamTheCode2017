@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour {
     [SerializeField] private TowerBase towerBase;
@@ -14,11 +15,17 @@ public class PlayerInput : MonoBehaviour {
     //[SerializeField]
     //private float activationTime = 1f;
 
+    private TutorialManager tutorialManager;
     // Use this for initialization
     void Start () {
         ChangeCurrenTower(towerBase);
         mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
         mainTower.TextActivator(mainTower.children);
+        if(SceneManager.GetActiveScene().name == "_Tutorial")
+        {
+            tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
+        }
+        
     }
 	
 	// Update is called once per frame
@@ -48,15 +55,31 @@ public class PlayerInput : MonoBehaviour {
 
         if (Input.GetButtonDown("X"))
         {
+            if (SceneManager.GetActiveScene().name == "_Tutorial")
+            {
+                tutorialManager.usedBottomTower = true;
+            }
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.X);
             HandlePlayerInput(tower);
         } else if (Input.GetButtonDown("Circle")) {
+            if (SceneManager.GetActiveScene().name == "_Tutorial")
+            {
+                tutorialManager.usedRightTower = true;
+            }
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Circle);
             HandlePlayerInput(tower);
         } else if (Input.GetButtonDown("Square")) {
+            if (SceneManager.GetActiveScene().name == "_Tutorial")
+            {
+                tutorialManager.usedLeftTower = true;
+            }
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Square);
             HandlePlayerInput(tower);
         } else if (Input.GetButtonDown("Triangle")) {
+            if (SceneManager.GetActiveScene().name == "_Tutorial")
+            {
+                tutorialManager.usedTopTower = true;
+            }
             tower = currentTower.GetChildByKey(Tower.ActivateKeys.Triangle);
             HandlePlayerInput(tower);
         }

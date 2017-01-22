@@ -59,7 +59,7 @@ public class TowerBase : MonoBehaviour {
         //animations = GameObject.Find("TowerV1").GetComponent<Animation>();
 
         if (!isActive) animations.Play("Destroyed");
-
+        TextActivator(mainTower.children);
         BuildConnections();
     }
 
@@ -218,6 +218,5 @@ public class TowerBase : MonoBehaviour {
 
             isActive = true;
         }
-
     }
 }
