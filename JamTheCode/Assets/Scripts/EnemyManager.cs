@@ -203,14 +203,17 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator LoadLevel()
     {
-        
-        Text tutorialText = GameObject.Find("TutorialCanvas").GetComponentInChildren<Text>();
-        yield return new WaitForSeconds(1f);
-        tutorialText.text = "Wave complete!";
-        yield return new WaitForSeconds(1f);
-        tutorialText.text = "";
-        tutorialText.text = "Loading new level...";
-        yield return new WaitForSeconds(4f);
+        if (SceneManager.GetActiveScene().name == "_Tutorial" || SceneManager.GetActiveScene().name == "_Tutorial_part2")
+        {
+            Text tutorialText = GameObject.Find("TutorialCanvas").GetComponentInChildren<Text>();
+
+            yield return new WaitForSeconds(1f);
+            tutorialText.text = "Wave complete!";
+            yield return new WaitForSeconds(1f);
+            tutorialText.text = "";
+            tutorialText.text = "Loading new level...";
+            yield return new WaitForSeconds(4f);
+        }
         int i = Application.loadedLevel;
         Application.LoadLevel(i + 1);
 
