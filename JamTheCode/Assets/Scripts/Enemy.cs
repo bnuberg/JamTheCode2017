@@ -107,6 +107,7 @@ public class Enemy : MonoBehaviour {
     }
     public void Explode()
     {
+        SoundManager.Instance.PlayBombExplode();
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();
         transform.FindChild("Bomb_Roll").gameObject.SetActive(false);

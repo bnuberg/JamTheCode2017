@@ -95,6 +95,7 @@ public class PlayerInput : MonoBehaviour {
         if (tower != null)
         {
             tower.TextActivator(tower.children);
+            SoundManager.Instance.PlayTowerShoot();
             if (tower.Active())
             {
                 towerBase.ResetTextTowers();

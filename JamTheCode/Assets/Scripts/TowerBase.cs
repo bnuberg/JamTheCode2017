@@ -47,6 +47,7 @@ public class TowerBase : MonoBehaviour {
 
     // Use this for initialization
     protected virtual void Start () {
+
         //GetComponent<SpriteRenderer>().color = Color.green;
         mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
         
@@ -163,7 +164,6 @@ public class TowerBase : MonoBehaviour {
             }
 
             if (isActive) other.GetComponent<Enemy>().Explode();
-
             Die();
         }
 
@@ -187,7 +187,8 @@ public class TowerBase : MonoBehaviour {
             ashes.SetActive(true);
             //ashes.transform.Rotate(Vector3.forward, Random.value * 360);
             animations.Play("Destruction");
-        }
+            SoundManager.Instance.PlayTowerCrumble();
+        } 
         isActive = false;
         GetComponent<SpriteRenderer>().enabled = false;
 
@@ -204,6 +205,7 @@ public class TowerBase : MonoBehaviour {
     {
         foreach (Tower tower in children)
         {
+            
             tower.SetActive();
             tower.Invoke("activateAllChildren", 1f);
         }
@@ -214,8 +216,10 @@ public class TowerBase : MonoBehaviour {
     }
 
     public void SetActive() {
+
         if (parentTower.Active())
         {
+            SoundManager.Instance.PlayTowerCrumble();
             GetComponent<SpriteRenderer>().enabled = true;
             if (!isActive) animations.Play("Repair");
 
