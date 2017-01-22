@@ -100,7 +100,12 @@ public class TutorialManager : MonoBehaviour {
             yield return new WaitForSeconds(interval);
             tutorialText.text = "";
 
-            enemyManager.SpawnTutorialWave();
+            for (int i = 0; i < 10; i++)
+            {
+                yield return new WaitForSeconds(enemyManager.interval);
+                enemyManager.SpawnEnemy();
+            }
+
             enemyIsSpawned = true;
             #endregion
         } else if(SceneManager.GetActiveScene().name == "_Tutorial_part2")
@@ -112,11 +117,20 @@ public class TutorialManager : MonoBehaviour {
             yield return new WaitForSeconds(interval);
             tutorialText.text = "The grey highlighter shows your current tower";
             yield return new WaitForSeconds(interval);
+            tutorialText.text = "Hold Spacebar or Left Bumper on the controller + Tower key to freeze your enemies!";
+            yield return new WaitForSeconds(interval);
             tutorialText.text = "Kill the 20 enemies to continue";
             yield return new WaitForSeconds(interval);
             tutorialText.text = "";
-            enemyManager.SpawnTutorialWave();
+
+            for (int i = 0; i < 20; i++)
+            {
+                yield return new WaitForSeconds(enemyManager.interval);
+                enemyManager.SpawnEnemy();
+                
+            }
             enemyIsSpawned = true;
+
             #endregion
         }
     }
