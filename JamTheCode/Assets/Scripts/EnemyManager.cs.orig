@@ -9,37 +9,37 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField]
     private GameObject enemy;
+    [SerializeField]
     private float interval;
     
     public float spawnDistance;
 
-<<<<<<< HEAD
     private int waveCount;
+    [SerializeField]
     private int waveEnemyAmount;
     [SerializeField]
     private Text waveCountText;
     [SerializeField]
     private Text waveCountMessage;
 
-    private List<Vector2> spawnPositions;
-=======
     private List<Vector3> spawnPositions;
->>>>>>> TowerModelBranch
 
     // Use this for initialization
     void Start()
     {
         mainTower = GameObject.Find("MainTower");
 
-        interval = 2f;
 <<<<<<< HEAD
-        spawnPositions = new List<Vector2>();
-        waveCount = 0;
-        waveEnemyAmount = 15;
-=======
+        
         spawnPositions = new List<Vector3>();
-        spawnDistance = 10f;
->>>>>>> TowerModelBranch
+        waveCount = 0;
+        
+=======
+        interval = 1f;
+        spawnPositions = new List<Vector3>();
+        waveCount = 0;
+        waveEnemyAmount = 30;
+>>>>>>> origin/ExplosionRange
         StartCoroutine(EnemySpawner());
     }
 
@@ -51,21 +51,19 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator EnemySpawner()
     {
-
-
         UpdateWaveCount();
         yield return new WaitForSeconds(1f);
         UpdateWaveMiddle();
         while (true)
         {
-<<<<<<< HEAD
             
             yield return new WaitForSeconds(1.5f);
             waveCountMessage.text = "";
+            Debug.Log(interval);
             for (int i = 0; i < waveEnemyAmount; i++)
             {
                 SpawnEnemy();
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(interval);
             }
 
             waveEnemyAmount *= 2;
@@ -73,19 +71,14 @@ public class EnemyManager : MonoBehaviour
             UpdateWaveCount();
             UpdateWaveMiddle();
 
-=======
-            yield return new WaitForSeconds(interval);
-
             Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
             Instantiate(enemy, randomPosition, Quaternion.identity);
->>>>>>> TowerModelBranch
         }
-
     }
 
     private void UpdateWaveCount()
     {
-        mainTower.GetComponent<TowerBase>().activateAllChildren();
+        //mainTower.GetComponent<TowerBase>().activateAllChildren();
         waveCount++;
         waveCountText.text = "Wave: " + waveCount;
     }
@@ -97,17 +90,19 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Vector2 randomPosition = RandomCircle(this.transform.position, spawnDistance);
+        Vector3 randomPosition = RandomCircle(this.transform.position, spawnDistance);
         Instantiate(enemy, randomPosition, Quaternion.identity);
     }
     private Vector3 RandomCircle(Vector3 center, float radius)
     {
+
         // create random angle between 0 to 360 degrees
         float ang = Random.value * 360;
         Vector3 pos;
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.y = center.y;
         pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        
         //pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         //pos.z = center.z;
 

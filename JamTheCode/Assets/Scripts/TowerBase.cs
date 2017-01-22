@@ -14,6 +14,12 @@ public class TowerBase : MonoBehaviour {
     [SerializeField]
     private GameObject explosion;
 
+    [SerializeField] protected float maxExplosionRange = 2f;
+    [SerializeField] protected float explosionRangeDecrease = 0.5f;
+    protected float explosionRange;
+
+
+
     [SerializeField]
     private Animation animations;
     private GameObject ashes;
@@ -45,6 +51,7 @@ public class TowerBase : MonoBehaviour {
         mainTower = GameObject.Find("MainTower").GetComponent<TowerBase>();
         
         RandomizeActivationKeys();
+        explosionRange = maxExplosionRange;
 
         animations = gameObject.GetComponentInChildren<Animation>();
         ashes = animations.gameObject.transform.GetChild(1).gameObject;
@@ -79,7 +86,7 @@ public class TowerBase : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-    }
+	}
     
 
     protected virtual void RandomizeActivationKeys()
@@ -164,6 +171,9 @@ public class TowerBase : MonoBehaviour {
     
     virtual public void Explosion() {
         GameObject go = Instantiate(explosion, transform);
+        go.GetComponent<Explosion>().SetSizeMultiplier(explosionRange);
+        explosionRange -= explosionRangeDecrease;
+        if (explosionRange < 0) explosionRange = 0;
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 

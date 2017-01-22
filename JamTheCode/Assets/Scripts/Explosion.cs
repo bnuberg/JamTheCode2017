@@ -24,4 +24,9 @@ public class Explosion : MonoBehaviour {
             Destroy(this.gameObject, destroyDelay);
         }
     }
+
+    public void SetSizeMultiplier(float size)
+    {
+        sizeMultiplier = size;
+    }
 }
