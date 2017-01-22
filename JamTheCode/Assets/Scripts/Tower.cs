@@ -34,7 +34,7 @@ public class Tower : TowerBase {
         if (Input.GetButton("Power"))
         {
             FreezePower();
-            Debug.Log("Poweeeeeeeeeeeeeeeeeeeeeeeeeeeer");
+            
         }
         else
         {

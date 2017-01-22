@@ -1789,6 +1789,8 @@ MonoBehaviour:
   parentTower: {fileID: 0}
   children: []
   explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
+  maxExplosionRange: 2
+  explosionRangeDecrease: 0.5
   animations: {fileID: 0}
   isActive: 1
   fireSpawn: {fileID: 1502809133959618}
@@ -1797,6 +1799,7 @@ MonoBehaviour:
   buildConnections: 1
   death: {fileID: 0}
   inputText: {fileID: 114569213952335774}
+  freeze: {fileID: 1189005480566410, guid: 7911bbfd1b9f1ca45ba7792e4118db6c, type: 2}
 --- !u!114 &114508518756545588
 MonoBehaviour:
   m_ObjectHideFlags: 1
