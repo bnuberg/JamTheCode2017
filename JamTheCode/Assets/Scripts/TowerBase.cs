@@ -162,7 +162,7 @@ public class TowerBase : MonoBehaviour {
         
     }
     
-    public void Explosion() {
+    virtual public void Explosion() {
         GameObject go = Instantiate(explosion, transform);
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }

@@ -7,17 +7,21 @@ public class Enemy : MonoBehaviour {
     
     private Rigidbody2D rigidBody;
     private float speed;
-    
-
+    [SerializeField]
+    private float freezeMultiplier;
+    private bool isSlowed = false;
     private List<TowerBase> towers;
     private TowerBase closestTower;
     private Vector3 currentPosition;
     private float offset;
-	// Use this for initialization
-	void Start () {
+
+    [SerializeField]
+    float freezeTime;
+    // Use this for initialization
+    void Start () {
         //rigidBody = this.GetComponent<Rigidbody2D>();
         speed = 0.5f;
-        offset = 1f;
+        offset = 0.1f;
 	    GetTowers();
 
         //Debug.Log(towers.Count);
@@ -34,21 +38,59 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Explosion")) {
-            Explode();
             closestTower.Shoot(this.gameObject);
             GameObject player = GameObject.Find("MainTower");
             Combo comboScript = player.GetComponent<Combo>();
             comboScript.EnemyDied();
+            Explode();
+        }
+        else if (other.CompareTag("Freeze"))
+        {
+            Freeze();
+        }
 
+    }
+    void Freeze()
+    {
+        
+        if (isSlowed == false)
+        {
+            speed *= freezeMultiplier;
+            isSlowed = true;
+            
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-        currentPosition = this.transform.position;
-        closestTower = GetClosestTower(currentPosition);
 
+    // Update is called once per frame
+    void Update () {
+        currentPosition = this.transform.position;
+        if (closestTower == null || !closestTower.Active())
+        {
+            closestTower = GetClosestTower(currentPosition);
+        }
+
+<<<<<<< HEAD
+	    if (closestTower != null)
+        {
+            transform.position = Vector3.MoveTowards(currentPosition, closestTower.transform.position, Time.deltaTime * speed);
+            transform.LookAt(closestTower.transform);
+=======
         transform.position = Vector3.MoveTowards(currentPosition, closestTower.transform.position, Time.deltaTime*speed);
+        transform.LookAt(closestTower.transform);
+        Debug.Log(isSlowed);
+        if (isSlowed && freezeTime > 0)
+        {
+            freezeTime -= Time.deltaTime;
+            
+        }
+        else if (freezeTime <= 0)
+        {
+            freezeTime = 2;
+            isSlowed = false;
+            speed = 0.5f;
+            
+>>>>>>> TowerPower
+        }
     }
 
     private TowerBase GetClosestTower(Vector3 currentPos) {
@@ -67,10 +109,12 @@ public class Enemy : MonoBehaviour {
         }
         return tMin;
     }
-    void Explode()
+    public void Explode()
     {
         ParticleSystem exp = GetComponent<ParticleSystem>();
         exp.Play();
+        transform.FindChild("Bomb_Roll").gameObject.SetActive(false);
+        speed = 0;
         Destroy(this.gameObject, exp.main.duration);
     }
 
