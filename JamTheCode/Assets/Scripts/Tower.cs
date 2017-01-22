@@ -24,7 +24,6 @@ public class Tower : TowerBase {
 	void Update () {
         if (explosionRange < maxExplosionRange)
         {
-            Debug.Log("Increase Range");
             explosionRange += 0.01f;
         }
         if (explosionRange > maxExplosionRange) explosionRange = maxExplosionRange;
@@ -52,7 +51,6 @@ public class Tower : TowerBase {
 
     private void InputToColor(ActivateKeys key)
     {
-        string inputText = "";
 
         switch (key)
         {

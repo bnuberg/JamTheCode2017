@@ -13,8 +13,8 @@ public class EnemyManager : MonoBehaviour
     private float interval;
     
     public float spawnDistance;
-
     private int waveCount;
+
     [SerializeField]
     private int waveEnemyAmount;
     [SerializeField]
@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private Text waveCountMessage;
 
-    private List<Vector3> spawnPositions;
+    //private List<Vector3> spawnPositions;
 
     // Use this for initialization
     void Start()
@@ -30,9 +30,9 @@ public class EnemyManager : MonoBehaviour
         mainTower = GameObject.Find("MainTower");
 
         interval = 1f;
-        spawnPositions = new List<Vector3>();
+        //spawnPositions = new List<Vector3>();
         waveCount = 0;
-        waveEnemyAmount = 30;
+        waveEnemyAmount = 5;
         StartCoroutine(EnemySpawner());
     }
 
@@ -47,31 +47,56 @@ public class EnemyManager : MonoBehaviour
         UpdateWaveCount();
         yield return new WaitForSeconds(1f);
         UpdateWaveMiddle();
-        while (true)
+        yield return new WaitForSeconds(1.5f);
+        while (waveCount < 4)
         {
-            
-            yield return new WaitForSeconds(1.5f);
             waveCountMessage.text = "";
-            Debug.Log(interval);
             for (int i = 0; i < waveEnemyAmount; i++)
             {
                 SpawnEnemy();
                 yield return new WaitForSeconds(interval);
             }
 
-            waveEnemyAmount *= 2;
-            yield return new WaitForSeconds(15f);
-            UpdateWaveCount();
-            UpdateWaveMiddle();
+            while (AreEnemiesLeft())
+            {
+                yield return new WaitForSeconds(1f);
+            }
 
-            Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
-            Instantiate(enemy, randomPosition, Quaternion.identity);
+            yield return new WaitForSeconds(4f);
+            NextWave();
+            yield return new WaitForSeconds(6f);
+
+            //Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
+            //Instantiate(enemy, randomPosition, Quaternion.identity);
         }
+
+        Debug.Log("You beat 3 waves, move on to next level!");
+    }
+
+    private bool AreEnemiesLeft()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        Debug.Log(enemies.Length);
+
+        if (enemies.Length == 0)
+            return false;
+        else
+            return true;
+        ;
+    }
+
+    private void NextWave()
+    {
+        waveEnemyAmount += 2;
+        interval *= 0.9f;
+        UpdateWaveCount();
+        UpdateWaveMiddle();
     }
 
     private void UpdateWaveCount()
     {
-        //mainTower.GetComponent<TowerBase>().activateAllChildren();
+        mainTower.GetComponent<TowerBase>().activateAllChildren();
         waveCount++;
         waveCountText.text = "Wave: " + waveCount;
     }
@@ -95,9 +120,6 @@ public class EnemyManager : MonoBehaviour
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.y = center.y;
         pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
-        
-        //pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
-        //pos.z = center.z;
 
         return pos;
     }
