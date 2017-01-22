@@ -201,7 +201,7 @@ public class TowerBase : MonoBehaviour {
         GetComponent<SpriteRenderer>().enabled = false;
 
         ResetTextTowers();
-        this.gameObject.GetComponentInChildren<Text>().text = "";
+        //this.gameObject.GetComponentInChildren<Text>().text = "";
         for (int i = 0; i < children.Length; i++)
         {
             if (children[i].Active()) children[i].Invoke("Die", 1f);

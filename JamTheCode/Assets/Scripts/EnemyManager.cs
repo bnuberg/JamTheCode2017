@@ -203,6 +203,7 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator LoadLevel()
     {
+        
         Text tutorialText = GameObject.Find("TutorialCanvas").GetComponentInChildren<Text>();
         yield return new WaitForSeconds(1f);
         tutorialText.text = "Wave complete!";

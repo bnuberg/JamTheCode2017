@@ -24,7 +24,7 @@ public class Death : MonoBehaviour {
     IEnumerator LoadLevel() {
         while (true) {
             yield return new WaitForSeconds(4f);
-            SceneManager.LoadScene(5);
+            SceneManager.LoadScene(1);
         }
         if (startedCoroutine) {
             gameObject.SetActive(false);
