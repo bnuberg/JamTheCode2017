@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour {
     void Start () {
         tutorialText.text = "";
         enemyManager = GameObject.Find("MainTower").GetComponent<EnemyManager>();
-        interval = 0.25f;
+        interval = 4f;
         StartCoroutine(Introduction());
 	}
 	
