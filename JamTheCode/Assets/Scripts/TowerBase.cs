@@ -219,9 +219,12 @@ public class TowerBase : MonoBehaviour {
 
         if (parentTower.Active())
         {
-            SoundManager.Instance.PlayTowerCrumble();
             GetComponent<SpriteRenderer>().enabled = true;
-            if (!isActive) animations.Play("Repair");
+            if (!isActive)
+            {
+                animations.Play("Repair");
+                SoundManager.Instance.PlayTowerCrumble();
+            }
 
             isActive = true;
         }

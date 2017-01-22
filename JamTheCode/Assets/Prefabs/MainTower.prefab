@@ -15637,6 +15637,7 @@ GameObject:
   - component: {fileID: 114781704851034796}
   - component: {fileID: 65262172030838070}
   - component: {fileID: 114445610978560192}
+  - component: {fileID: 114744210806930256}
   m_Layer: 0
   m_Name: MainTower
   m_TagString: Tower
@@ -89923,7 +89924,6 @@ MonoBehaviour:
   towerBase: {fileID: 114766202402635924}
   currentTower: {fileID: 0}
   success: 0
-  activationTime: 0.1
 --- !u!114 &114445610978560192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89936,6 +89936,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1999593020859620}
+--- !u!114 &114744210806930256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1696513659412600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddf2a7ddab34c949ac2d308bf61128a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114766202402635924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89947,13 +89958,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8d274b230914943821b6ada845cc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentTower: {fileID: 0}
+  parentTower: {fileID: 114766202402635924}
   children:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   explosion: {fileID: 1060780877726328, guid: 1ef9a534a675f3c4c81dfb8c5ed5ddae, type: 2}
+  maxExplosionRange: 2
+  explosionRangeDecrease: 0.5
   animations: {fileID: 111800594385638808}
   isActive: 1
   fireSpawn: {fileID: 0}
@@ -89974,6 +89987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comboChain: 0
   comboTimer: 10
+  comboTimerMax: 0
+  highestCombo: 0
   addCombo: 1
   addComboEnemy: 2
   playerInput: {fileID: 114056118233664850}
@@ -89989,7 +90004,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1884305445197030, guid: 035098fde0552354bad52f121d06c634, type: 2}
+  interval: 0
   spawnDistance: 15
+  waveEnemyAmount: 0
   waveCountText: {fileID: 0}
   waveCountMessage: {fileID: 0}
 --- !u!198 &198116171012780010
