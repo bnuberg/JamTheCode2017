@@ -24,7 +24,7 @@ public class Tower : TowerBase {
 	void Update () {
         if (explosionRange < maxExplosionRange)
         {
-            explosionRange += 0.01f;
+            explosionRange += 0.003f;
         }
         if (explosionRange > maxExplosionRange) explosionRange = maxExplosionRange;
     }
@@ -45,6 +45,10 @@ public class Tower : TowerBase {
     {
         
         GameObject go = Instantiate(freeze, transform);
+
+        go.GetComponent<Explosion>().SetSizeMultiplier(explosionRange);
+        explosionRange -= explosionRangeDecrease;
+        if (explosionRange < 0) explosionRange = 0;
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 

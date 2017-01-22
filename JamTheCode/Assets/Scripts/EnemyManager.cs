@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
         interval = 1f;
         //spawnPositions = new List<Vector3>();
         waveCount = 0;
-        waveEnemyAmount = 5;
+        waveEnemyAmount = 30;
         StartCoroutine(EnemySpawner());
     }
 
@@ -62,9 +62,16 @@ public class EnemyManager : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
 
-            yield return new WaitForSeconds(4f);
-            NextWave();
-            yield return new WaitForSeconds(6f);
+            if (waveCount < 3)
+            {
+                yield return new WaitForSeconds(4f);
+                NextWave();
+                yield return new WaitForSeconds(6f);
+            }
+            else
+            {
+                waveCount++;
+            }
 
             //Vector3 randomPosition = RandomCircle(new Vector3(transform.position.x, 0, transform.position.z), spawnDistance);
             //Instantiate(enemy, randomPosition, Quaternion.identity);
@@ -88,7 +95,7 @@ public class EnemyManager : MonoBehaviour
 
     private void NextWave()
     {
-        waveEnemyAmount += 2;
+        waveEnemyAmount += 20;
         interval *= 0.9f;
         UpdateWaveCount();
         UpdateWaveMiddle();
