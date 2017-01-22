@@ -18,7 +18,6 @@ public class Tower : TowerBase {
         InputToColor(GetActivationKey());
         InputText.text = "";
         InputText.transform.localScale = new Vector3(-InputText.transform.localScale.x, InputText.transform.localScale.y, InputText.transform.localScale.z);
-
     }
 	
 	// Update is called once per frame
@@ -45,7 +44,7 @@ public class Tower : TowerBase {
     }
     void FreezePower()
     {
-        
+        SoundManager.Instance.PlayFreeze();
         GameObject go = Instantiate(freeze, transform);
 
         go.GetComponent<Explosion>().SetSizeMultiplier(explosionRange);
@@ -119,7 +118,6 @@ public class Tower : TowerBase {
     public override void Die() {
         base.Die();
         InputText.GetComponent<TextHighlight>().StopHighlight();
-
     }
 
     public ActivateKeys GetActivationKey() {
