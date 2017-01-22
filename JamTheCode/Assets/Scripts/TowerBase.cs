@@ -13,6 +13,9 @@ public class TowerBase : MonoBehaviour {
     private TowerBase mainTower;
     [SerializeField]
     private GameObject explosion;
+    [SerializeField]
+    private GameObject selectObject;
+
 
     [SerializeField] protected float maxExplosionRange = 2f;
     [SerializeField] protected float explosionRangeDecrease = 0.5f;
@@ -176,7 +179,12 @@ public class TowerBase : MonoBehaviour {
         explosionRange -= explosionRangeDecrease;
         if (explosionRange < 0) explosionRange = 0;
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        
+
+        //Selection Ring
+        GameObject select = Instantiate(selectObject, transform);
+        select.transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+        //select.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f;
+
     }
 
     virtual public void Die() {
