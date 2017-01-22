@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour {
         {
             transform.position = Vector3.MoveTowards(currentPosition, closestTower.transform.position, Time.deltaTime * speed);
             transform.LookAt(closestTower.transform);
-        Debug.Log(isSlowed);
+       
         if (isSlowed && freezeTime > 0)
         {
             freezeTime -= Time.deltaTime;

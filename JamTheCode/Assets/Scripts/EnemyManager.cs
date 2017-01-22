@@ -9,11 +9,13 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField]
     private GameObject enemy;
+    [SerializeField]
     private float interval;
     
     public float spawnDistance;
 
     private int waveCount;
+    [SerializeField]
     private int waveEnemyAmount;
     [SerializeField]
     private Text waveCountText;
@@ -27,10 +29,10 @@ public class EnemyManager : MonoBehaviour
     {
         mainTower = GameObject.Find("MainTower");
 
-        interval = 0.000001f;
+        
         spawnPositions = new List<Vector3>();
         waveCount = 0;
-        waveEnemyAmount = 10000;
+        
         StartCoroutine(EnemySpawner());
     }
 
