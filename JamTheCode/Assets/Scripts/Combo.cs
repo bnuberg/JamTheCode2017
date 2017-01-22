@@ -25,8 +25,7 @@ public class Combo : MonoBehaviour {
 	void Update () {
         //TODO check if input is being chained in certain amount of time
         ComboAdd();
-        //Debug.Log(comboTimerMax);
-
+        
     }
     void ComboAdd()
     {
@@ -40,8 +39,9 @@ public class Combo : MonoBehaviour {
         }
         else if( playerInput.success == 0)
         {
-            if(comboChain >= 1) {
+            if(comboChain >= 1 && comboTimerMax > 0) {
                comboTimerMax -= Time.deltaTime;
+                
             }
             
         }
@@ -50,6 +50,10 @@ public class Combo : MonoBehaviour {
             comboChain = 0;
             comboTimerMax = 0;
             
+        }
+        if (comboTimerMax < 0)
+        {
+            comboTimerMax = 0;
         }
         
     }
