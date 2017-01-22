@@ -7,9 +7,9 @@ public class Combo : MonoBehaviour {
 
 
     [SerializeField]
-    private float comboTimer = 10;
-    private float comboTimerMax;
-     
+    public float comboTimer = 10;
+    public float comboTimerMax;
+    public int highestCombo;
     [SerializeField]
     private int addCombo = 1;
     [SerializeField]
@@ -44,10 +44,16 @@ public class Combo : MonoBehaviour {
             }
             
         }
-        else if(playerInput.success == -1 || comboTimerMax <= 0)
+        if(playerInput.success == -1 || comboTimerMax <= 0)
         {
+            if (highestCombo <= comboChain)
+            {
+                highestCombo = comboChain;
+            }
             comboChain = 0;
             comboTimerMax = 0;
+            
+            
             
         }
         if (comboTimerMax < 0)
