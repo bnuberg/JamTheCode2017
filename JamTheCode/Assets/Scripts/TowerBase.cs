@@ -113,14 +113,16 @@ public class TowerBase : MonoBehaviour {
         newMagicBall.transform.position = fireSpawn.transform.position;
         newMagicBall.GetComponent<MagicBallController>().SetTarget(enemy);
     }
-    public void TextActivator(Tower[] children)
+    public void TextActivator(Tower[] childrenLIst)
     {
-        foreach (Tower child in children)
+        foreach (Tower child in childrenLIst)
         {
             if (child.isActive)
             {
-                child.inputText = child.GetComponentInChildren<Text>();
-                child.inputText.text = child.InputToString(child.GetActivationKey());
+                //child.InputText = child.GetComponentInChildren<Text>();
+                child.InputText.text = child.InputToString(child.GetActivationKey());
+                child.InputText.GetComponent<TextHighlight>().StartHighlight();
+                //child.TextActivator(child.children);
             }
         }
     }
@@ -175,6 +177,7 @@ public class TowerBase : MonoBehaviour {
         explosionRange -= explosionRangeDecrease;
         if (explosionRange < 0) explosionRange = 0;
         go.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        
     }
 
     virtual public void Die() {
